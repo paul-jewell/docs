@@ -1,2 +1,11 @@
-site_name: Electrolama Docs
-theme: readthedocs
+site_name: Electrolama
+repo_url: https://github.com/electrolama/docs
+plugins: []
+theme:
+  name: readthedocs
+  #custom_dir: 'tweaks/'
+  include_search_page: false
+  search_index_only: true
+  prev_next_buttons_location: none
+  navigation_depth: 4
+extra_css: [_css/electrolama.css]
