@@ -1,0 +1,36 @@
+.wy-side-nav-search {
+    background-color: #2cad3b;
+}
+
+.icon-home::before {
+    content: url(logo-small.png);
+}
+
+.icon-home {
+    font-family: monospace;
+}
+
+/* add a bit of space betweeen "Home" and "Projects"
+p.caption:first-of-type {*/
+p.caption{
+    margin-top: 15px;
+}
+
+/*.wy-menu-vertical li.toctree-l1 > a:before {*/
+.wy-menu:first-child {
+    background-color: red;
+    font-family: "FontAwesome"; font-weight: 900; content: "\f015 ";
+}
+
+.wy-breadcrumbs > li:first-of-type > a {
+    text-indent: -9999px;
+    line-height: 0;
+}
+
+.wy-breadcrumbs > li:first-of-type > a:after {
+    background-color: yellow;
+    content: "Electrolama";
+    text-indent: 0;
+    display: block;
+    line-height: initial; /* New content takes up original line height */
+}
