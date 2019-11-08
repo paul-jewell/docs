@@ -3,7 +3,7 @@
 }
 
 .icon-home::before {
-    content: url(logo-small.png);
+    content: url(../electrolama-logo-small.png);
 }
 
 .icon-home {
@@ -28,9 +28,21 @@ p.caption{
 }
 
 .wy-breadcrumbs > li:first-of-type > a:after {
-    background-color: yellow;
     content: "Electrolama";
     text-indent: 0;
     display: block;
     line-height: initial; /* New content takes up original line height */
+}
+
+table {
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+th {
+    background-color: #cccccc;
+}
+
+th, td {
+    padding: 7px;
 }

@@ -8,4 +8,4 @@ theme:
   search_index_only: true
   prev_next_buttons_location: none
   navigation_depth: 4
-extra_css: [_css/electrolama.css]
+extra_css: [_assets/css/electrolama.css]
