@@ -17,6 +17,8 @@ A (SW1) | B (SW2) | Y (D1)
 
 The [artwork](https://www.flickr.com/photos/psd/6014043655) is by [@psd](https://twitter.com/psd), who kindly let me turn it into a silly PCB. Thanks, Paul!
 
+![](/_assets/nandcat-pcb.jpg)
+
 
 # Schematic
 
@@ -24,6 +26,7 @@ The [artwork](https://www.flickr.com/photos/psd/6014043655) is by [@psd](https:/
 
 
 # Bill of Materials
+
 Designator | Part | Description
 -----------|------|------------
 SW1, SW2 | [Omron B3S](https://octopart.com/search?q=+B3S-1000P+) or similar | 6mm SMD SPST-NO Tactile Switch
@@ -40,8 +43,13 @@ Q1 and Q2 can be pretty much any NPN transistor in SOT23 package that has the fo
 
 ![Transistor pinout](/_assets/npn-sot23.png)
 
+Go crazy with your LED choice and decorations!
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">NANDCat goes to a rave! <a href="https://t.co/tQ8k387pwV">pic.twitter.com/tQ8k387pwV</a></p>&mdash; Omer Kilic (@OmerK) <a href="https://twitter.com/OmerK/status/1195807849273671680?ref_src=twsrc%5Etfw">November 16, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
 
 # Downloads
+
   - KiCAD source files in [electrolama/nandcat](https://github.com/electrolama/nandcat)
 
 
