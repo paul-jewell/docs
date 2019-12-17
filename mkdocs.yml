@@ -1,6 +1,8 @@
 site_name: Electrolama
 repo_url: https://github.com/electrolama/docs
 plugins: []
+markdown_extensions:
+  - codehilite
 theme:
   name: readthedocs
   #custom_dir: 'tweaks/'
