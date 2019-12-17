@@ -2,7 +2,7 @@ title: ZOE (Zigbee + PoE for RPi)
 
 # Overview
 
-**(Preliminary instructions, detailed write-up, design files and purchase information up soon -- 17/12/19)**
+**(Preliminary instructions. Detailed write-up, design files and purchase information up soon -- 17/12/19)**
 
 ![ZOE, Revision B](/_assets/zoe.jpg)
 
