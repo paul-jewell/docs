@@ -138,21 +138,21 @@ Compile with `gcc -Wall -o modreset modreset.c -lwiringPi` and run to reset the 
 
 ## Using the RTC
 
-Set RTC up:
+As root, set RTC up:
 
-`echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device`
+`# echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device`
 
 Update the system time:
 
-` sudo apt install ntpdate && sudo ntpdate -s 0.pool.ntp.org`
+`$ sudo apt install ntpdate && sudo ntpdate -s 0.pool.ntp.org`
 
 Write system time to RTC:
 
-`sudo hwclock -w`
+`$ sudo hwclock -w`
 
 Read date/time back from RTC:
 
-`sudo hwclock -r`
+`$ sudo hwclock -r`
 
 
 # Downloads
