@@ -80,7 +80,7 @@ Grab the latest flash-cc2531 and unzip:
 
 `wget -O flash-cc2531.zip https://codeload.github.com/jmichault/flash_cc2531/zip/master && unzip flash-cc2531.zip`
 
-You will need a suitable firmware for this board, if you want to experiment with zigbee2mqtt the [Z-Stack-firmware](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) by Koenkk is a good starting point, it's important that any firmware used should be comiled for both the CC2530 with the CC2592 range extender:
+You will need a suitable firmware for this board, if you want to experiment with [zigbee2mqtt](https://www.zigbee2mqtt.io/) the [Z-Stack-firmware](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) by Koenkk is a good starting point, it's important that any firmware used should be compiled for both the CC2530 with the CC2592 range extender:
 
 ``
 
