@@ -1,23 +1,23 @@
-title: ZOE (Zigbee + PoE for RPi)
+title: zoe (Zigbee + PoE for RPi)
+
+*Last updated: 02/01/2020, added download links and license*
 
 # Overview
 
-**(Preliminary instructions. Detailed write-up, design files and purchase information up soon -- 17/12/19)**
+![zoe, Revision B](/_assets/zoe.jpg)
 
-![ZOE, Revision B](/_assets/zoe.jpg)
-
-ZOE is a 802.15.4/Zigbee(tm) development board designed to be used alongside a Raspberry Pi. It follows the Raspberry Pi HAT Mechanical specification but it does not have the ID EEPROM therefore it is not really a HAT.
+zoe is a 802.15.4/Zigbee(tm) development board designed to be used alongside a Raspberry Pi. It follows the Raspberry Pi HAT Mechanical specification but it does not have the ID EEPROM therefore it is not really a HAT.
 
 The Zigbee radio used is the TI CC2530 along with CC2592 Range Extender (PA+LNA). This is a fairly common and mature chip combo, famously used by zigbee2mqtt and other open-source Zigbee systems.
 
-Intended to be used as a Zigbee coordinator, ZOE also has RTC for time keeping and can (optionally) power both itself and the Raspberry Pi through passive 48V or IEEE 802.3af Power-over-Ethernet (PoE).
+Intended to be used as a Zigbee coordinator, zoe also has RTC for time keeping and can (optionally) power both itself and the Raspberry Pi through passive 48V or IEEE 802.3af Power-over-Ethernet (PoE).
 
 While a TagConnect to CC-Debugger footprint is included, no external programmer is required for flashing the Zigbee module thanks to flash-cc2531, a bitbanged implementation of the Chipcon programming protocol. **Make sure you set the dip switch to programming mode** and follow the instruction below to flash your board.
 
 
 ## Purchase 
 
-Both kits and assembled versions of ZOE will be made available on Tindie in early 2020. 
+Both kits and assembled versions of zoe will be made available on Tindie in early 2020. 
 
 [Click here](https://mailchi.mp/1746be86dd81/electrolama) to subscribe to the Electrolama mailing list to be notified of project updates and when kits/assembles units go on sale.
 
@@ -157,12 +157,17 @@ Read date/time back from RTC:
 
 # Downloads
 
-(will be added soon)
+  - EAGLE source files in [electrolama/zoe](https://github.com/electrolama/zoe)
+  - [Schematic (pdf), Revision C](/_assets/zoe-revC-schematic.pdf)
 
 
 # Changelog
 
-(will be added soon)
+In the repo, [click here](https://github.com/electrolama/zoe/blob/master/CHANGELOG.md).
+
+# License
+
+zoe is designed by Electrolama / Omer Kilic and licensed under the [Solderpad Hardware License 2.0](https://solderpad.org/licenses/SHL-2.0/). 
 
 # Contact 
 
