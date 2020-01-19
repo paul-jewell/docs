@@ -25,7 +25,9 @@ Name credit goes to [@9600](https://twitter.com/9600/), this had a much boring n
 
 ![zig-a-zig-ah! fit test](/_assets/zzh-fit-test.jpg)
 
-As of 02/01/2020 I have captured most of the schematic and will publish it over the weekend for comments. Expecting to do a prototype run late Jan/early Feb.
+*19/01/2020*
+
+<blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><p lang="en" dir="ltr">A serendipitous Taobao discovery means that ZZH* might ship with a cheap and cheerful plastic enclosure. Sent off some test gerbers, going to be a tight squeeze as the PCB had to get a bit shorter... <br><br>* <a href="https://t.co/kF0cm2S3q2">https://t.co/kF0cm2S3q2</a> <a href="https://t.co/LjbSI75WFZ">pic.twitter.com/LjbSI75WFZ</a></p>&mdash; Omer Kilic (@OmerK) <a href="https://twitter.com/OmerK/status/1219025454344146945?ref_src=twsrc%5Etfw">January 19, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 Interested in this? [Ping me](https://twitter.com/omerk) and let me know what you think!
 
