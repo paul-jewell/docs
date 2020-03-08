@@ -1,4 +1,4 @@
-title: zig-a-zig-ah! (CC2652R Stick)
+title: zig-a-zig-ah! (CC2652 Stick)
 
 *Last updated: 08/03/2020, info about first prototype and initial testing*
 
@@ -10,14 +10,15 @@ title: zig-a-zig-ah! (CC2652R Stick)
 
  It features:
 
- - TI [CC2652R](http://www.ti.com/product/CC2652R) SimpleLink™ multi-standard wireless MCU, a multiprotocol 2.4 GHz wireless microcontroller targeting Thread, Zigbee®, Bluetooth® 5 Low Energy, IEEE 802.15.4g, IPv6-enabled smart objects (6LoWPAN) and proprietary systems.
- - [CC2652P](http://www.ti.com/product/CC2652P) also an option, has built-in PA (but no LNA?).
- - Communicates with the host computer via CP2102N/CP2104 USB-UART bridge.
- - Self-programming via the TI [CC-series serial bootstrap loader](https://github.com/JelmerT/cc2538-bsl) (as long as it is not disabled in code!), pushbutton on the default BSL pin to put the device into bootloader mode.
- - Cortex-M Debug Connector for SWD, in case you disable BSL by accident.
- - SMA antenna port for an external antenna of your choice. Secondary uFL port for measurements or an alternative antenna.
+ - TI [CC2652R](http://www.ti.com/product/CC2652R) or [CC2652RB](http://www.ti.com/product/CC2652RB) ([discussion](https://github.com/electrolama/zig-a-zig-ah/issues/1)) SimpleLink™ multi-standard wireless MCU, a multiprotocol 2.4 GHz wireless microcontroller targeting Thread, Zigbee®, Bluetooth® 5 Low Energy, IEEE 802.15.4g, IPv6-enabled smart objects (6LoWPAN) and proprietary systems.
+ - Communicates with the host computer via the common CH340 USB-UART bridge, no manual driver installation needed in most cases (Windows and Linux).
+ - Self-programming via the TI [CC-series serial bootstrap loader](https://github.com/JelmerT/cc2538-bsl) (as long as it is not disabled in code!), pushbutton on the default BSL pin to put the device into this mode.
+ - SWD debug header, in case you disable BSL by accident or want a proper debug interface. Sadly this is not a standard header due to space constraints, see below for the details of a small "debug adapter" board.
+ - SMA antenna port for an external antenna of your choice. Go wild or pick something discrete.
 
-Think of it as an upgrade to the ubiquitous [CC2531 USB Sticks](https://www.google.com/search?q=cc2531+stick) commonly used for Zigbee tinkering. CC2652R has a much beefier processor, more memory and a sane free compiler option that should enable easier development compared to the old CC2531 based option.
+Think of it as an upgrade to the ubiquitous [CC2531 USB Sticks](https://www.google.com/search?q=cc2531+stick) commonly used for Zigbee tinkering. CC2652 has a much beefier processor, more memory and a sane free compiler that should enable easier development compared to the old 8051 based CC2530/1 based devices.
+
+**[Click here](https://mailchi.mp/1746be86dd81/electrolama) to subscribe to the Electrolama mailing list to be notified of project updates and when kits/assembles units go on sale.**
 
 
 ## Current status
@@ -47,6 +48,8 @@ Finally, a quick test of zigbee2mqtt:
 A little more work is needed before I am happy releasing this but it is close!
 
 Revision A, Draft 3 design files [in the repository](https://github.com/electrolama/zig-a-zig-ah), some minor changes expected before the first proper release. Follow the development progress [on this Twitter thread](https://twitter.com/OmerK/status/1212864418155028480).
+
+Also thinking of a second variant that uses [CC2652P](http://www.ti.com/product/CC2652P), sadly not pin compatible with CC2652R (or CC2652RB) so this will have be a new board spin. "P" part has a built-in PA (but no LNA) and should provide better range. 
 
 Interested in this? [Ping me](https://twitter.com/omerk) and let me know what you think
 
