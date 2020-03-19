@@ -53,6 +53,22 @@ Also thinking of a second variant that uses [CC2652P](http://www.ti.com/product/
 
 Interested in this? [Ping me](https://twitter.com/omerk) and let me know what you think
 
+# Flashing
+ - https://github.com/JelmerT/cc2538-bsl
+```bash
+./cc2538-bsl.py -p /dev/ttyUSB0 -evw firmware.hex
+```
+
+# Zigbee2MQTT
+Zigbee2MQTT has beta support for the chipset used on this board, this is not an offically supported configration and your millage may vary. You will need to flash a recent versions of the coordinator from https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator.
+
+## Sample Config
+```yaml
+serial:
+  port: /dev/ttyUSB0
+  rtscts: false
+```
+
 ## Purchase 
 
 Assembled versions of zig-a-zig-ah! will be made available on Tindie when it is ready.
