@@ -60,7 +60,7 @@ Interested in this? [Ping me](https://twitter.com/omerk) and let me know what yo
 ```
 
 # Zigbee2MQTT
-Zigbee2MQTT has beta support for the chipset used on this board, this is not an offically supported configration and your millage may vary. You will need to flash a recent versions of the coordinator from https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator.
+Zigbee2MQTT has beta support for the chipset used on this board, this is not an offically supported configration and your millage may vary. You will need to flash a beta version of the coordinator from https://github.com/Koenkk/Z-Stack-firmware/tree/develop. 
 
 ## Sample Config
 ```yaml
