@@ -41,10 +41,20 @@ A limited of number of kits will be for sale on Tindie very soon.
 
 # User Manual
 
+## Getting hardware ready
 
+zoe purchases from Tindie ship as partial kits, with all SMD components pre-soldered and connectors that require some soldering which should be fairly straightforward if you have a soldering iron around.
 
-## Unpacking and Soldering
+As a guideline, here is the recommended instructions to complete the assembly of zoe boards:
 
+  - Unpack the parts kit and get your soldering iron ready
+  - Install the battery holder (for the RTC and PoE boards), push it in place and solder it. Best get this sorted before dealing with the headers.
+  - Position the 2x20 and 2x2 (if you are using the PoE kit) headers on the Pi you will be using and install the hex spacers using the bottom 4 screws.
+  - Align and push the zoe board on to the connectors placed on the Pi, secure the zoe board on to Pi and the hex spacers using the top 4 screws. The purpose of this is to make sure the zoe board is perfectly aligned with your Pi.
+  - Solder the connectors in place and inspect your work, make sure there aren't any missed spots or cold solder joints.
+  - You are done with hardware, move on to the software instructions below.
+
+If you need some pointers or a refresher about soldering, [this YouTube video](https://www.youtube.com/watch?v=fYz5nIHH0iY&t=533s) might come in handy.
 
 
 ## Initial Setup on the Raspberry Pi
@@ -104,11 +114,11 @@ Thanks to the flash-cc2531 tool, you can program the CC2530 radio without needin
 
 **Make sure the programming switches are in the "ON" position before programming the module** 
 
-(FIXME: add photo)
+![zoe Lite Kit](/_assets/zoe-dip-switch.jpg)
 
-You might notice a piece of yellow/orange tape on top of the switch, peel this off before use.
+You might notice a piece of yellow/orange tape on top of the DIP switch, peel this off before use.
 
-Before we can use the flash-cc2531 tool, we need to install the wiringpi library dependency:
+Before you can use the flash-cc2531 tool, you need to install the wiringpi library dependency:
 
 `sudo apt install wiringpi`
 
@@ -116,26 +126,26 @@ Grab the latest version of the flash-cc2531 tool and unzip:
 
 `wget -O flash-cc2531.zip https://codeload.github.com/jmichault/flash_cc2531/zip/master && unzip flash-cc2531.zip`
 
-You will need a suitable firmware for this board, it is important to note that any firmware used should be compiled for CC2530 with the CC2592 range extender.
+You will need a suitable firmware for this board, **it is important to note that any firmware used should be compiled for CC2530 with the CC2592 range extender**.
 
-If you want to experiment with [zigbee2mqtt](https://www.zigbee2mqtt.io/) the [Z-Stack coordinator firmware](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) by Koenkk is a good starting point.
+If you want to experiment with [zigbee2mqtt](https://www.zigbee2mqtt.io/), the [Z-Stack coordinator firmware](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) is a good starting point.
 
-Grab a suitable firmware, or compile your own, and follow the instructions below to interact with and program the chip:
+Grab the suitable firmware, or compile your own, and follow the instructions below to program the chip:
 
-Identify chip:
+Identify the chip:
 ``` bash
 ~/flash_cc2531 $ ./cc_chipid
   ID = a524.
 ```
 
-Erase chip:
+Erase the chip:
 ``` bash
 ~/flash_cc2531 $ ./cc_erase
   ID = a524.
   erase result = 00a2.
 ```
 
-Program chip:
+Program the chip:
 ``` bash
 ~/flash_cc2531 $ ./flash_cc2531/cc_write ./CC2530ZNP-Prod.hex
   ID = a524.
@@ -146,9 +156,11 @@ verifying page 128/128.
  flash OK.
 ```
 
-A useful note, if you're building your own zoe boards: E18 modules are shipped from the factory with code protection turned on, meaning that you won't be able to program them without an erase cycle first. If programming is failing, it is a good idea to erase the device first. This is not an issue for zoe boards sold by Electrolama as they are erased at the end of the test cycle.
+Be aware that this bitbanged programming method is a lot slower than the CC Debugger and it might take minutes, instead of the usual seconds, to burn your program.
 
-To reset the module after programming, either power cycle the Pi (off and the on again, not a reboot!) or use the following little program to toggle the GPIO that the reset pin is connected to:
+A useful note, if you're building your own zoe boards: E18 modules are shipped from the factory with code protection turned on, meaning that you won't be able to program them without an erase cycle first. If programming is failing, it is a good idea to erase the device first. This is not an issue for zoe boards sold by Electrolama as they are erased at the end of the production test.
+
+To reset the module after programming, either power cycle the Raspberry Pi (shutdown, unplug power and plug it back in again, not a reboot!) or use the following little program to toggle the GPIO that the reset pin is connected to:
 
 ``` c
 #include <stdio.h>
@@ -173,11 +185,12 @@ int main()
 
 Compile with `gcc -Wall -o modreset modreset.c -lwiringPi` and run to reset the module.
 
-It is a good idea to return the programming jumpers back to the "OFF" position after programming the module.
+It is a good idea to return the programming jumpers back to the "OFF" position after programming the module for the normal operation of the device. We don't want stray GPIO toggles interfering with the operation of the module.
 
 
 ## Programming the radio (using CC-DEBUGGER)
 
+If you happen to have a CC-DEBUGGER and a TagConnect TC2050-IDC-NL cable handy, you are in luck! Just plug in the TagConnect IDC end to the CC-DEBUGGER and hold the pogo-pin end on the contact pads on zoe while you program the board. No adapters necessary, it's just a straight connection!
 
 
 ## Using the RTC
@@ -197,6 +210,8 @@ Write system time to RTC:
 Read date/time back from RTC:
 
 `$ sudo hwclock -r`
+
+You'll probably want to integrate this in your init scripts. 
 
 
 # Downloads
