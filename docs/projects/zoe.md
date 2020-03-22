@@ -1,6 +1,6 @@
 title: zoe (Zigbee, RTC and PoE for RPi)
 
-*Last updated: 22/03/2020, tidied up documentation*
+*Last updated: 22/03/2020, tidied up documentation and added information on kits*
 
 # Overview
 
@@ -20,8 +20,8 @@ zoe comes in three flavours, in partial kit format where all SMD components are 
 
 Available models and a comparison table:
 
-|          | Radio | RTC | PoE |
-|:--------:|:-----:|:---:|:---:|
+|          | Radio   | RTC  | PoE   |
+|:--------:|:-------:|:----:|:-----:|
 | zoe-lite |   ✔️   |  ❌  |  ❌  |
 |  zoe-RTC |   ✔️   |  ✔️  |  ❌  |
 |  zoe-PoE |   ✔️   |  ✔️  |  ✔️  |
@@ -67,7 +67,7 @@ To prevent radio interference with Zigbee, Bluetooth and WiFi should be disabled
 
 Edit `/boot/config.txt` as root and append the following to the end of the file:
 
-```
+``` bash
 dtoverlay=disable-bt
 dtoverlay=disable-wifi
 ```
@@ -78,14 +78,14 @@ Reboot the Pi and verify that both WiFi and Bluetooth interfaces are disabled by
 
 If you'd like to use the RTC, run `sudo raspi-config` and enable I2C under "Interfacing Options". After a reboot, install the `i2c-tools` package and scan the bus:
 
-```
+``` bash
 sudo apt-get install i2c-tools
 sudo i2cdetect -y 1
 ```
 
 If you have the RTC chip populated, it should report back on address `0x68`:
 
-```
+``` bash
 $ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -116,25 +116,27 @@ Grab the latest version of the flash-cc2531 tool and unzip:
 
 `wget -O flash-cc2531.zip https://codeload.github.com/jmichault/flash_cc2531/zip/master && unzip flash-cc2531.zip`
 
-You will need a suitable firmware for this board, if you want to experiment with [zigbee2mqtt](https://www.zigbee2mqtt.io/) the [Z-Stack-firmware](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) by Koenkk is a good starting point, it's important that any firmware used should be compiled for both the CC2530 with the CC2592 range extender:
+You will need a suitable firmware for this board, it is important to note that any firmware used should be compiled for CC2530 with the CC2592 range extender.
 
-``
+If you want to experiment with [zigbee2mqtt](https://www.zigbee2mqtt.io/) the [Z-Stack coordinator firmware](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) by Koenkk is a good starting point.
+
+Grab a suitable firmware, or compile your own, and follow the instructions below to interact with and program the chip:
 
 Identify chip:
-```
+``` bash
 ~/flash_cc2531 $ ./cc_chipid
   ID = a524.
 ```
 
 Erase chip:
-```
+``` bash
 ~/flash_cc2531 $ ./cc_erase
   ID = a524.
   erase result = 00a2.
 ```
 
 Program chip:
-```
+``` bash
 ~/flash_cc2531 $ ./flash_cc2531/cc_write ./CC2530ZNP-Prod.hex
   ID = a524.
   reading line 15490.
@@ -144,9 +146,9 @@ verifying page 128/128.
  flash OK.
 ```
 
-Return the programming jumpers back to the "OFF" position after programming the module.
+A useful note, if you're building your own zoe boards: E18 modules are shipped from the factory with code protection turned on, meaning that you won't be able to program them without an erase cycle first. If programming is failing, it is a good idea to erase the device first. This is not an issue for zoe boards sold by Electrolama as they are erased at the end of the test cycle.
 
-To reset the module, either power cycle the Pi (off and the on again) or use the following little program to toggle the GPIO that the reset pin is connected to:
+To reset the module after programming, either power cycle the Pi (off and the on again, not a reboot!) or use the following little program to toggle the GPIO that the reset pin is connected to:
 
 ``` c
 #include <stdio.h>
@@ -170,6 +172,9 @@ int main()
 ```
 
 Compile with `gcc -Wall -o modreset modreset.c -lwiringPi` and run to reset the module.
+
+It is a good idea to return the programming jumpers back to the "OFF" position after programming the module.
+
 
 ## Programming the radio (using CC-DEBUGGER)
 
@@ -198,7 +203,7 @@ Read date/time back from RTC:
 
   - EAGLE source files in [electrolama/zoe](https://github.com/electrolama/zoe)
   - [Schematic (pdf), Revision C](/_assets/zoe-revC-schematic.pdf)
-  - [Local copy of the E18 Zigbee Module](/assets/E18-MS1PA1-PCB_Usermanual_EN_v1.1.pdf) (If you're looking for details of how CC2530 and CC2592 are connected inside the module)
+  - [Local copy of the E18 Zigbee module datasheet](/_assets/E18-MS1PA1-PCB_Usermanual_EN_v1.1.pdf) (If you're looking for details of how CC2530 and CC2592 are connected inside the module)
 
 
 # Changelog
