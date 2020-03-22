@@ -214,6 +214,23 @@ Read date/time back from RTC:
 You'll probably want to integrate this in your init scripts. 
 
 
+# Power-over-Ethernet
+
+zoe uses the Ag9800MT PoE module from Silvertel, which is IEEE 802.3af compliant and has an input voltage range of 36V to 57V with short-circuit and thermal protection. It can provide up to 9W of 5V power to power both the Raspberry Pi and zoe itself, which is plenty enough for most workloads on a Raspberry Pi.
+
+If you have a IEEE 802.3af compliant PoE switch, powering a Raspberry Pi with a zoe board attached is as simple as just plugging an ethernet cable on both ends. The PoE module cleverly generates the PoE compatibility signature required by the Power Sourcing Equipment (PSE). If you have passive PoE equipment, you will have to manually enable 48V power (24V won't work) on the port that the Raspberry Pi with zoe installed is connected to.
+
+## Tested PoE Switch/Adapters
+
+Below is a list of tested configurations, feel free to send a pull request with your input or ping [@OmerK](https://twitter.com/OmerK).
+
+
+| PoE Switch/Adapter                               |   PoE Type  | Status |
+|--------------------------------------------------|:-----------:|:------:|
+| NETGEAR ProSafe GS108P                           |   802.3af   |   ✔️   |
+| AliExpress Mystery Meat PoE "Injector" Wall Plug | Passive 48V |   ✔️   |
+
+
 # Downloads
 
   - EAGLE source files in [electrolama/zoe](https://github.com/electrolama/zoe)
