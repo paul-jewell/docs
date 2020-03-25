@@ -54,9 +54,11 @@ Also thinking of a second variant that uses [CC2652P](http://www.ti.com/product/
 Interested in this? [Ping me](https://twitter.com/omerk) and let me know what you think
 
 # Flashing
- - https://github.com/JelmerT/cc2538-bsl
-```bash
-./cc2538-bsl.py -p /dev/ttyUSB0 -evw firmware.hex
+In it's default configuration the chip used supports programing over USB via an embedded bootloader. To activate flashing press and hold the programing button whilst inserting the stick. [cc2538-bsl](https://github.com/JelmerT/cc2538-bsl) can be used to flash the board and works on both Windows and Linux.
+ 
+
+```Shell
+$ ./cc2538-bsl.py -p /dev/ttyUSB0 -evw firmware.hex
 ```
 
 # Zigbee2MQTT
