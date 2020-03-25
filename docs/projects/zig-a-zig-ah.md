@@ -68,6 +68,7 @@ Zigbee2MQTT has beta support for the chipset used on this board, this is not an 
 ```yaml
 serial:
   port: /dev/ttyUSB0
+advanced:
   rtscts: false
 ```
 
