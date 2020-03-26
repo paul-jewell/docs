@@ -14,7 +14,7 @@ Intended to be used as a Zigbee coordinator, zoe also has a very accurate [DS323
 
 While a [TagConnect](https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector) to [CC-Debugger](http://www.ti.com/tool/CC-DEBUGGER) footprint is included, no external programmer is required for flashing the Zigbee module thanks to [flash-cc2531](https://github.com/jmichault/flash_cc2531), a bitbanged implementation of the Chipcon programming protocol. 
 
-## Purchase 
+### Purchase 
 
 zoe comes in three flavours, in partial kit format where all SMD components are pre-soldered and connectors are not.
 
@@ -39,9 +39,9 @@ A limited of number of kits will be for sale on Tindie very soon.
 [Click here](https://mailchi.mp/1746be86dd81/electrolama) to subscribe to the Electrolama mailing list to be notified of project updates and when kits go on sale.
 
 
-# User Manual
+## User Manual
 
-## Getting hardware ready
+### Getting hardware ready
 
 zoe purchases from Tindie ship as partial kits, with all SMD components pre-soldered and connectors that require some soldering which should be fairly straightforward if you have a soldering iron around.
 
@@ -57,11 +57,11 @@ As a guideline, here is the recommended instructions to complete the assembly of
 If you need some pointers or a refresher about soldering, [this YouTube video](https://www.youtube.com/watch?v=fYz5nIHH0iY&t=533s) might come in handy.
 
 
-## Initial Setup on the Raspberry Pi
+### Initial Setup on the Raspberry Pi
 
 Here are a few steps to prepare your Pi for zoe. A fresh install of Raspbian Lite is highly recommended before you get started.
 
-### Reclaim UART
+#### Reclaim UART
 
 In order to get serial communication between the Pi and Zigbee module working, the console UART needs to be disabled. TXD0 and RXD0 pins are used to communicate with the CC2530 radio. 
 
@@ -71,7 +71,7 @@ You should also disable the hciuart service by running: `sudo systemctl disable 
 
 `/dev/ttyAMA0` can now be used for communicating with the Zigbee module after a reboot.
 
-### Disable WiFi and Bluetooth
+#### Disable WiFi and Bluetooth
 
 To prevent radio interference with Zigbee, Bluetooth and WiFi should be disabled. You don't need to do this but a wired Ethernet connection is strongly recommended as you will, without a shadow of doubt, have better Zigbee performance with other radios disabled.
 
@@ -84,7 +84,7 @@ dtoverlay=disable-wifi
 
 Reboot the Pi and verify that both WiFi and Bluetooth interfaces are disabled by observing the outputs of `ifconfig` and `hciconfig`.
 
-### Enable I2C
+#### Enable I2C
 
 If you'd like to use the RTC, run `sudo raspi-config` and enable I2C under "Interfacing Options". After a reboot, install the `i2c-tools` package and scan the bus:
 
@@ -108,7 +108,7 @@ $ sudo i2cdetect -y 1
 70: -- -- -- -- -- -- -- --
 ```
 
-## Programming the radio (bit-banged, flash-cc2531)
+### Programming the radio (bit-banged, flash-cc2531)
 
 Thanks to the flash-cc2531 tool, you can program the CC2530 radio without needing external programming adapters (typically a CC-DEBUGGER is used to program these parts). Please keep in mind that zoe is a general purpose development board and as such, it is shipped "blank" with no code on the wireless microcontroller. You will need to program it before it does anything meaningful.
 
@@ -188,12 +188,12 @@ Compile with `gcc -Wall -o modreset modreset.c -lwiringPi` and run to reset the 
 It is a good idea to return the programming jumpers back to the "OFF" position after programming the module for the normal operation of the device. We don't want stray GPIO toggles interfering with the operation of the module.
 
 
-## Programming the radio (using CC-DEBUGGER)
+### Programming the radio (using CC-DEBUGGER)
 
 If you happen to have a CC-DEBUGGER and a TagConnect TC2050-IDC-NL cable handy, you are in luck! Just plug in the TagConnect IDC end to the CC-DEBUGGER and hold the pogo-pin end on the contact pads on zoe while you program the board. No adapters necessary, it's just a straight connection!
 
 
-## Using the RTC
+### Using the RTC
 
 As root, set RTC up:
 
@@ -214,13 +214,13 @@ Read date/time back from RTC:
 You'll probably want to integrate this in your init scripts. 
 
 
-# Power-over-Ethernet
+## Power-over-Ethernet
 
 zoe uses the Ag9800MT PoE module from Silvertel, which is IEEE 802.3af compliant and has an input voltage range of 36V to 57V with short-circuit and thermal protection. It can provide up to 9W of 5V power to power both the Raspberry Pi and zoe itself, which is plenty enough for most workloads on a Raspberry Pi.
 
 If you have a IEEE 802.3af compliant PoE switch, powering a Raspberry Pi with a zoe board attached is as simple as just plugging an ethernet cable on both ends. The PoE module cleverly generates the PoE compatibility signature required by the Power Sourcing Equipment (PSE). If you have passive PoE equipment, you will have to manually enable 48V power (24V won't work) on the port that the Raspberry Pi with zoe installed is connected to.
 
-## Tested PoE Switch/Adapters
+### Tested PoE Switch/Adapters
 
 Below is a list of tested configurations, feel free to send a pull request with your input or ping [@OmerK](https://twitter.com/OmerK).
 
@@ -231,21 +231,21 @@ Below is a list of tested configurations, feel free to send a pull request with 
 | AliExpress Mystery Meat PoE "Injector" Wall Plug | Passive 48V |   ✔️   |
 
 
-# Downloads
+## Downloads
 
   - EAGLE source files in [electrolama/zoe](https://github.com/electrolama/zoe)
   - [Schematic (pdf), Revision C](/_assets/zoe-revC-schematic.pdf)
   - [Local copy of the E18 Zigbee module datasheet](/_assets/E18-MS1PA1-PCB_Usermanual_EN_v1.1.pdf) (If you're looking for details of how CC2530 and CC2592 are connected inside the module)
 
 
-# Changelog
+## Changelog
 
 In the repo, [click here](https://github.com/electrolama/zoe/blob/master/CHANGELOG.md).
 
-# License
+## License
 
 zoe is designed by Electrolama / Omer Kilic and licensed under the [Solderpad Hardware License 2.0](https://solderpad.org/licenses/SHL-2.0/). 
 
-# Contact 
+## Contact 
 
 Ping <a href="https://twitter.com/omerk">@OmerK</a>

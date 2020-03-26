@@ -1,4 +1,4 @@
-title: disaster01
+title: disaster01 SAO
 
 # Overview 
 
@@ -15,12 +15,12 @@ Doesn't need D cells but just as D-lightful!
 ![](/_assets/disaster01.jpg)
 
 
-# Schematic 
+## Schematic 
 
 ![](/_assets/disaster01-schematic.png)
 
 
-# Bill of Materials
+## Bill of Materials
 
 You are going to need a bunch of LEDs, 0402 current limiting resistors, one SPDT switch and a 2x3 male header.
 
@@ -29,19 +29,19 @@ Here's what our Taobao order looked like for the Supercon 2019 batch:
 ![](/_assets/disaster01-taobao.jpg)
 
 
-# Downloads
+## Downloads
 
   - EAGLE source files in [electrolama/disaster01](https://github.com/electrolama/disaster01)
 
 
-# Build notes
+## Build notes
 
   - Switch footprint is a little tight so you might have to get creative with it.
   - Top plane is VCC, bottom GND.
   - The random batch of LEDs we got were far too bright and when all lit, migraine inducing. Might want to do a test run and adjust your Rs accordingly.
 
 
-# Changelog 
+## Changelog 
 
   - Revision A
     - Initial and most likely the final release (Nov 2019)

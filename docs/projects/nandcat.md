@@ -1,4 +1,4 @@
-title: NANDCat!
+title: NANDCat SAO
 
 # Overview
 
@@ -20,12 +20,12 @@ The [artwork](https://www.flickr.com/photos/psd/6014043655) is by [@psd](https:/
 ![](/_assets/nandcat-pcb.jpg)
 
 
-# Schematic
+## Schematic
 
 ![](/_assets/nandcat-schematic.png)
 
 
-# Bill of Materials
+## Bill of Materials
 
 Designator | Part | Description
 -----------|------|------------
@@ -48,12 +48,12 @@ Go crazy with your LED choice and decorations!
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">NANDCat goes to a rave! <a href="https://t.co/tQ8k387pwV">pic.twitter.com/tQ8k387pwV</a></p>&mdash; Omer Kilic (@OmerK) <a href="https://twitter.com/OmerK/status/1195807849273671680?ref_src=twsrc%5Etfw">November 16, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 
-# Downloads
+## Downloads
 
   - KiCAD source files in [electrolama/nandcat](https://github.com/electrolama/nandcat)
 
 
-# Changelog
+## Changelog
 
   - Revision A (Oct 2019)
     - Initial release.
@@ -61,6 +61,6 @@ Go crazy with your LED choice and decorations!
     - Added a battery holder (CR2032) and some exposed copper for a brooch/pin back.
 
 
-# Contact 
+## Contact 
 
 Ping <a href="https://twitter.com/omerk">@OmerK</a>
