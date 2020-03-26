@@ -47,6 +47,10 @@ th, td {
     padding: 7px;
 }
 
+#commits {
+    font-size: 14px;
+}
+
 .codehilite {
     border: 1px solid #ccc;
 }
