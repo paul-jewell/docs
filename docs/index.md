@@ -28,7 +28,7 @@ document.addEventListener( "DOMContentLoaded", function(event) {
       var commit_date = new Date(commit.commit.author.date)
       var commit_details = document.createElement('a');
       commit_details.appendChild( document.createTextNode(commit.commit.message) )
-      commit_details.href = commit.commit.url
+      commit_details.href = commit.html_url
 
       var li = document.createElement("li");
       li.appendChild( document.createTextNode(commit_date.toLocaleDateString() + " - ") )
