@@ -53,7 +53,9 @@ Also thinking of a second variant that uses [CC2652P](http://www.ti.com/product/
 
 Interested in this? [Ping me](https://twitter.com/omerk) and let me know what you think
 
-# Flashing
+## Instructions
+
+### Flashing using BSL
 In it's default configuration the chip used supports programing over USB via an embedded bootloader. To activate flashing press and hold the programing button whilst inserting the stick. [cc2538-bsl](https://github.com/JelmerT/cc2538-bsl) can be used to flash the board and works on both Windows and Linux.
  
 
@@ -61,10 +63,11 @@ In it's default configuration the chip used supports programing over USB via an 
 $ ./cc2538-bsl.py -p /dev/ttyUSB0 -evw firmware.hex
 ```
 
-# Zigbee2MQTT
+### Zigbee2MQTT
 Zigbee2MQTT has beta support for the chipset used on this board, this is not an offically supported configration and your millage may vary. You will need to flash a beta version of the coordinator from https://github.com/Koenkk/Z-Stack-firmware/tree/develop. 
 
-## Sample Config
+#### Sample Config
+
 ```yaml
 serial:
   port: /dev/ttyUSB0
@@ -74,24 +77,29 @@ advanced:
 
 ## Purchase 
 
-Assembled versions of zig-a-zig-ah! will be made available on Tindie when it is ready.
+Assembled versions of zig-a-zig-ah! will be made available soon.
 
 [Click here](https://mailchi.mp/1746be86dd81/electrolama) to subscribe to the Electrolama mailing list to be notified of project updates and when kits/assembles units go on sale.
 
-# Downloads
+## Downloads
 
   - coming soon
 
-# License
+## License
 
 zig-a-zig-ah! is designed by Electrolama / Omer Kilic and licensed under the [Solderpad Hardware License 2.0](https://solderpad.org/licenses/SHL-2.0/). 
 
-# ACKs
+## ACKs
+
+Thanks to:
+
+  - [@GeorgeIoak](https://twitter.com/GeorgeIoak) and [@matthewvenn](https://twitter.com/matthewvenn) for design review and comments during early prototyping
+  - [Fredrik K](https://www.linkedin.com/in/fredrik-kervel/) for his domain expertise, design review and (much appreciated!) RF help
+  - [@KoenKK](https://github.com/koenkk/) for his work on the great zigbee2mqtt project and testing prototypes
+  - [@egelmex](https://twitter.com/egelmex) for testing prototypes, improving docs and being an all around cool dude
 
 Name credit goes to [@9600](https://twitter.com/9600/), this had a much boring name before he suggested zig-a-zig-ah!
 
-Special thanks to [@GeorgeIoak](https://twitter.com/GeorgeIoak) and [@matthewvenn](https://twitter.com/matthewvenn) for design review and comments.
-
-# Contact 
+## Contact 
 
 Ping [@OmerK](https://twitter.com/omerk)
