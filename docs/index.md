@@ -5,7 +5,7 @@ title: Home
 Electrolama is a collection of open source projects and various other frivolities by [@OmerK](https://twitter.com/omerk) and friends.
 
 
-## Changelog
+# Changelog
 
 (Pulled from the [docs repository](https://github.com/electrolama/docs/commits/master) with JavaScript, might be blank if you have it disabled)
 
