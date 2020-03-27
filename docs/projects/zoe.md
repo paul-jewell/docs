@@ -120,11 +120,15 @@ You might notice a piece of yellow/orange tape on top of the DIP switch, peel th
 
 Before you can use the flash-cc2531 tool, you need to install the wiringpi library dependency:
 
-`sudo apt install wiringpi`
+``` bash
+sudo apt install wiringpi
+```
 
 Grab the latest version of the flash-cc2531 tool and unzip:
 
-`wget -O flash-cc2531.zip https://codeload.github.com/jmichault/flash_cc2531/zip/master && unzip flash-cc2531.zip`
+``` bash
+wget -O flash-cc2531.zip https://codeload.github.com/jmichault/flash_cc2531/zip/master && unzip flash-cc2531.zip
+```
 
 You will need a suitable firmware for this board, **it is important to note that any firmware used should be compiled for CC2530 with the CC2592 range extender**.
 
@@ -197,19 +201,27 @@ If you happen to have a CC-DEBUGGER and a TagConnect TC2050-IDC-NL cable handy, 
 
 As root, set RTC up:
 
-`# echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device`
+``` bash
+# echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
+```
 
 Update the system time:
 
-`$ sudo apt install ntpdate && sudo ntpdate -s 0.pool.ntp.org`
+``` bash
+$ sudo apt install ntpdate && sudo ntpdate -s 0.pool.ntp.org
+```
 
 Write system time to RTC:
 
-`$ sudo hwclock -w`
+``` bash
+$ sudo hwclock -w
+```
 
 Read date/time back from RTC:
 
-`$ sudo hwclock -r`
+``` bash
+$ sudo hwclock -r
+```
 
 You'll probably want to integrate this in your init scripts. 
 
