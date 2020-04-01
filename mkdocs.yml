@@ -11,3 +11,4 @@ theme:
   prev_next_buttons_location: none
   navigation_depth: 4
 extra_css: [_assets/css/electrolama.css]
+google_analytics: ['UA-162410991-1', 'electrolama.com']
