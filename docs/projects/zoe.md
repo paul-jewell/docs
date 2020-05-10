@@ -35,7 +35,7 @@ All these ship as partial kits. All SMD components are pre-soldered but connecto
 
 ![zoe PoE Kit](/_assets/zoe-kit-poe.jpg)
 
-**Please keep in mind that zoe is a general purpose development board and as such, it is shipped "blank" with no code on the wireless microcontroller. You will need to program it before it does anything meaningful.** Instructions are provided below.
+**Please keep in mind that zoe is a general purpose development board and as such, it is shipped "blank" with no code on the wireless microcontroller. You will need to program it before it does anything meaningful.** Given the application dependent nature of this board, limited after-sales support can be provided for Tindie purchases (For example: we can help you program this board but can't fix your Zigbee network range issues or offer specific software support). 
 
 Subscribe to the [Electrolama mailing list](https://mailchi.mp/1746be86dd81/electrolama) to be notified of project updates and when kits/assembled units go on sale.
 
@@ -293,6 +293,10 @@ In the repo, [click here](https://github.com/electrolama/zoe/blob/master/CHANGEL
 ## License
 
 zoe is designed by Electrolama / Omer Kilic and licensed under the [Solderpad Hardware License 2.0](https://solderpad.org/licenses/SHL-2.0/). 
+
+### Regulatory Notice
+
+This kit is designed to allow Product developers to evaluate electronic components, circuitry, or software associated with the kit to determine whether to incorporate such items in a finished product and Software developers to write software applications for use with the end product. This kit is not a finished product and when assembled may not be resold or otherwise marketed unless all required FCC (or any other local authority) equipment authorizations are first obtained. Operation is subject to the condition that this product not cause harmful interference to licensed radio stations and that this product accept harmful interference.
 
 ## Contact 
 

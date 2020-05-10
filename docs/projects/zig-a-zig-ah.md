@@ -53,7 +53,7 @@ A portion of each sale will be donated to [@Koenkk](https://github.com/Koenkk/) 
 
 ### Important Note
 
-**Please keep in mind that zzh is a general purpose development board and as such, it is shipped "blank" with no code on the wireless microcontroller. You will need to program it before it does anything meaningful.**
+**Please keep in mind that zzh is a general purpose development board and as such, it is shipped "blank" with no code on the wireless microcontroller. You will need to program it before it does anything meaningful.** Given the application dependent nature of this board, limited after-sales support can be provided for Tindie purchases (For example: we can help you program this board but can't fix your Zigbee network range issues or offer specific software support). 
 
 ### Drivers for CH340
 
@@ -238,6 +238,10 @@ In the repo, [click here](https://github.com/electrolama/zig-a-zig-ah/blob/maste
 ## License
 
 zig-a-zig-ah! is designed by Electrolama / Omer Kilic and licensed under the [Solderpad Hardware License 2.0](https://solderpad.org/licenses/SHL-2.0/). 
+
+### Regulatory Notice
+
+This kit is designed to allow Product developers to evaluate electronic components, circuitry, or software associated with the kit to determine whether to incorporate such items in a finished product and Software developers to write software applications for use with the end product. This kit is not a finished product and when assembled may not be resold or otherwise marketed unless all required FCC (or any other local authority) equipment authorizations are first obtained. Operation is subject to the condition that this product not cause harmful interference to licensed radio stations and that this product accept harmful interference.
 
 ## ACKs
 
