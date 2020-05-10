@@ -233,7 +233,7 @@ Auxiliary chips:
 
 ## Changelog
 
-In the repo, [click here](https://github.com/electrolama/zzh/blob/master/CHANGELOG.md).
+In the repo, [click here](https://github.com/electrolama/zig-a-zig-ah/blob/master/CHANGELOG.md).
 
 ## License
 
