@@ -5,7 +5,7 @@ markdown_extensions:
   - codehilite
 theme:
   name: readthedocs
-  #custom_dir: 'tweaks/'
+  custom_dir: 'tweaks/'
   include_search_page: false
   search_index_only: true
   prev_next_buttons_location: none
