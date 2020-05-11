@@ -160,7 +160,7 @@ Open Command Prompt and check if `pip` is installed by running `pip -V` which wi
 
 From the same Command Prompt run:
 
-```cmd
+```bash
 pip3 install pyserial intelhex
 ```
 
@@ -175,7 +175,7 @@ At this point you are going to need a firmware file to flash to your device. As 
 
 To flash `blink.bin`, navigate to the folder where you extracted cc2538-bsl and open a Command Prompt there
 
-```cmd
+```bash
 cc2538-bsl.py -p COM14 -evw blink.bin
 ```
 
@@ -189,7 +189,7 @@ If you want to re-flash zzh with new firmware, put it in bootloader mode and fol
 
 To completely erase the device flash, run:
 
-```cmd
+```bash
 cc2538-bsl.py -p COM14 -e
 ```
 
