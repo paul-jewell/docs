@@ -244,6 +244,20 @@ advanced:
 The `rtscts: false` directive does not appear in the default configuration file but is crucial for the operation of zzh so please **don't ignore that**. 
 Also note that it sits in the `advanced:` config group and not in `serial:`.
 
+#### Troubleshooting
+
+**"Error: Failed to connect to the adapter (Error: SRSP - SYS - ping after 6000ms)"**
+
+This is a general error if there are communication problems with the adapter used.
+
+A checklist to go through if you get this error message:
+
+  * Try replugging zzh once or twice.
+  * Make sure you have the correct serial port and `rtscts: false` option set in your `configuration.yaml`
+  * Make sure you have the correct firmware burned on your adapter. **Remember, zzh boards ship blank** so you will need to burn the appropriate firmware before using it with any application.
+  * Are you using any virtualisation/container pass-through for the USB device? There have been reports of these potentially causing problems so for debugging purposes try communicating with the adapter directly from the host OS it is connected to (i.e: see if it works without the bypass)
+  * Make sure you are using an up-to-date version of Zigbee2mqtt on the host and firmware on the adapter.
+
 ### Zigbee Home Automation for Home Assistant
 
 [Zigbee Home Automation](https://www.home-assistant.io/integrations/zha/) or ZHA is an integration for Home Assistant. It uses the same Z-Stack coordinator firmware as Zigbee2mqtt and connects zzh directly with Home Assistant.    
@@ -263,20 +277,6 @@ navigate to the ZHA integration at the bottom of the Configuration page. You wil
 In case the autodetection fails, a manual setup menu will be displayed. Check the device path and set _Radio Type_ as **ti_cc**. Leave other options as they are.
 
 If ZHA is unable to connect to zzh try replugging zzh or change to another USB port.
-
-#### Troubleshooting
-
-**"Error: Failed to connect to the adapter (Error: SRSP - SYS - ping after 6000ms)"**
-
-This is a general error if there are communication problems with the adapter used.
-
-A checklist to go through if you get this error message:
-
-  * Try replugging zzh once or twice.
-  * Make sure you have the correct serial port and `rtscts: false` option set in your `configuration.yaml`
-  * Make sure you have the correct firmware burned on your adapter. **Remember, zzh boards ship blank** so you will need to burn the appropriate firmware before using it with any application.
-  * Are you using any virtualisation/container pass-through for the USB device? There have been reports of these potentially causing problems so for debugging purposes try communicating with the adapter directly from the host OS it is connected to (i.e: see if it works without the bypass)
-  * Make sure you are using an up-to-date version of Zigbee2mqtt on the host and firmware on the adapter.
 
 ## Aside: TI Part Numbers
 
