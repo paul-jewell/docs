@@ -110,38 +110,91 @@ To trigger the ROM bootloader, follow these steps:
   - Give it a few seconds for the device to settle and set up and release the BSL button
   - zzh should now be in ROM bootloader mode
 
-[cc2538-bsl](https://github.com/JelmerT/cc2538-bsl) is a Python script that can be used to flash the board and should work fine on pretty much any OS.
+[TI CC13xx/CC2538/CC26xx Serial Boot Loader (cc2538-bsl for short)](https://github.com/JelmerT/cc2538-bsl) is a Python script that can be used to flash the board and should work fine on pretty much any OS.
 
-On Linux: Install dependencies, download and extract cc2538-bsl:
+#### Linux
+To run cc2538-bsl.py you need to have python and pip installed on your system. If you don't have them installed, refer to your distribution package manager to get it set up. (On Debian/Ubuntu, `sudo apt update && sudo apt-get install python3-pip` should work. `sudo pip ...` is not the optimal way of installing packages but Python package management is out of scope for this document.)
+
+##### Download and extract cc2538-bsl
 
 ``` bash
-sudo pip3 install pyserial intelhex
-
 wget -O cc2538-bsl.zip https://codeload.github.com/JelmerT/cc2538-bsl/zip/master && unzip cc2538-bsl.zip
 ```
+##### Install required dependencies 
 
-(If you don't have `pip` installed, refer to your distribution package manager to get it set up. On Debian/Ubuntu, `sudo apt update && sudo apt-get install python3-pip` should work. `sudo pip ...` is not the optimal way of installing packages but Python package management is out of scope for this document)
+```bash
+sudo pip3 install pyserial intelhex
+```
 
-At this point you are going to need a firmware file to burn to your device. As a test, you can grab [this small program (blink.bin)](/_assets/blink.bin) that toggles the LED connected to `DIO_7`.
+##### Flash firmware
 
-To burn `blink.bin`, run:
+At this point you are going to need a firmware file to flash to your device. As a test, you can grab [this small program (blink.bin)](/_assets/blink.bin) that toggles the LED connected to `DIO_7`.
+
+To flash `blink.bin`, run:
 
 ```Shell
 $ ./cc2538-bsl.py -p /dev/ttyUSB0 -evw blink.bin
 ```
 
-(Don't forget to change `/dev/ttyUSB0` to the actual port on the host!)
+**Don't forget to change `/dev/ttyUSB0` to the port used on your machine!**
 
 This shouldn't take long and if successful, you will see blinkenlights!
 
-If you want to re-flash zzh with new firmware, just follow the BSL steps again to put it in bootloader mode. **This will work as long as BSL is not disabled by the firmware you burn to these devices.**
+If you want to re-flash zzh with new firmware, put it in bootloader mode and follow the flashing instructions. **This will work as long as BSL is not disabled by the firmware you burn to these devices.**
 
-To erase the device, run:
+##### Erase flash
+
+To completely erase the device flash, run:
 
 ```Shell
 $ ./cc2538-bsl.py -p /dev/ttyUSB0 -e
 ```
 
+#### Windows
+To run cc2538-bsl.py you need to have Python installed on your system. Download [Python for Windows](https://www.python.org/downloads/) and install. After installation verify Python is correctly installed by running `python -V` in Command Prompt. It should return Python and the version number.
+
+If you receive a message similiar to: `Python is not recognized as an internal or external command, operable program or batch file.` means Python is either not installed or the system variable path hasn’t been set. You’ll need to launch Python from the folder in which it is installed or adjust your system variables to allow it to be launched from any location.
+
+###### Install required dependencies 
+Open Command Prompt and check if `pip` is installed by running `pip -V` which will show its version and install location.
+
+From the same Command Prompt run:
+
+```cmd
+pip3 install pyserial intelhex
+```
+
+###### Download and extract cc2538-bsl
+
+Download the [zipped code](https://github.com/JelmerT/cc2538-bsl/archive/master.zip) and extract to a folder.
+
+
+###### Flash firmware
+
+At this point you are going to need a firmware file to flash to your device. As a test, you can grab [this small program (blink.bin)](/_assets/blink.bin) that toggles the LED connected to `DIO_7`. It is recommended to download it to the same folder cc2538-bsl is extracted to.
+
+To flash `blink.bin`, navigate to the folder where you extracted cc2538-bsl and open a Command Prompt there
+
+```cmd
+cc2538-bsl.py -p COM14 -evw blink.bin
+```
+
+**Don't forget to change `COM14` to the port used on your machine!**
+
+This shouldn't take long and if successful, you will see blinkenlights!
+
+If you want to re-flash zzh with new firmware, put it in bootloader mode and follow the flashing instructions. **This will work as long as BSL is not disabled by the firmware you burn to these devices.**
+
+##### Erase flash
+
+To completely erase the device flash, run:
+
+```cmd
+cc2538-bsl.py -p COM14 -e
+```
+
+_Example of a successful flash of Z-Stack coordinator firmware under Windows:_
+![zzh flash complete](/_assets/zzh-flash-complete.jpg)
 
 ### Flashing using external debugger
 
@@ -171,7 +224,7 @@ Here'a handy pinout reference for CC-DEVPACK-DEBUG:
 
 ### Zigbee2mqtt
 
-Zigbee2mqtt has support for CC2652R chip used on this board, for now you will need to flash a development version of the coordinator from [@Koenkk's firmware repository](https://github.com/Koenkk/Z-Stack-firmware/tree/develop).
+Zigbee2mqtt has support for CC2652R chip used on this board, for now still in development phase. Download the Z-Stack coordinator firmware from [@Koenkk's firmware repository](https://github.com/Koenkk/Z-Stack-firmware/tree/develop).
 
 As of writing, the latest development firmware available is: [CC26X2R1_20200417.zip](https://raw.githubusercontent.com/Koenkk/Z-Stack-firmware/develop/coordinator/Z-Stack_3.x.0/bin/CC26X2R1_20200417.zip). Download and extract this and follow the ["Flashing using BSL"](#flashing-using-bsl) instructions to burn this on your zzh.
 
@@ -179,7 +232,7 @@ As of writing, the latest development firmware available is: [CC26X2R1_20200417.
 
 Make sure that the CH340 USB-serial bridge drivers are installed and your device is recognised ([instructions here](#drivers-for-ch340)).
 
-With the correct serial port to use identified, edit your Zigbee2mqtt `configuration.yaml`:
+With the correct serial port in use identified, edit your Zigbee2mqtt `configuration.yaml`:
 
 ```yaml
 serial:
@@ -188,7 +241,28 @@ advanced:
   rtscts: false
 ```
 
-The `rtscts: false` directive does not appear in the default configuration file but is crucial for the operation of zzh so please don't ignore that. Also note that it sits in the `advanced:` config group and not in `serial:`.
+The `rtscts: false` directive does not appear in the default configuration file but is crucial for the operation of zzh so please **don't ignore that**. 
+Also note that it sits in the `advanced:` config group and not in `serial:`.
+
+### Zigbee Home Automation for Home Assistant
+
+[Zigbee Home Automation](https://www.home-assistant.io/integrations/zha/) or ZHA is an integration for Home Assistant. It uses the same Z-Stack coordinator firmware as Zigbee2mqtt and connects zzh directly with Home Assistant.    
+**Support for TI chips (especially CC2562) is still in development stage!**
+
+#### Configuration
+
+Make sure zzh is recognised and available to your Home Assistant instance. Navigate to _Configuration -> Integrations_, click on the `+` icon, find _Zigbee Home Automation_ and click on it.
+
+![ZHA Integration](/_assets/zzh-zha-install.png)
+
+Choose the device path of zzh and wait for installation to complete. 
+navigate to the ZHA integration at the bottom of the Configuration page. You will now have "Texas Instruments ZNP Coordinator" as the first device in ZHA. 
+
+![ZHA Coordinator](/_assets/zzh-zha-coord.png)
+
+In case the autodetection fails, a manual setup menu will be displayed. Check the device path and set _Radio Type_ as **ti_cc**. Leave other options as they are.
+
+If ZHA is unable to connect to zzh try replugging zzh or change to another USB port.
 
 #### Troubleshooting
 
@@ -198,11 +272,11 @@ This is a general error if there are communication problems with the adapter use
 
 A checklist to go through if you get this error message:
 
+  * Try replugging zzh once or twice.
   * Make sure you have the correct serial port and `rtscts: false` option set in your `configuration.yaml`
   * Make sure you have the correct firmware burned on your adapter. **Remember, zzh boards ship blank** so you will need to burn the appropriate firmware before using it with any application.
   * Are you using any virtualisation/container pass-through for the USB device? There have been reports of these potentially causing problems so for debugging purposes try communicating with the adapter directly from the host OS it is connected to (i.e: see if it works without the bypass)
   * Make sure you are using an up-to-date version of Zigbee2mqtt on the host and firmware on the adapter.
-
 
 ## Aside: TI Part Numbers
 
