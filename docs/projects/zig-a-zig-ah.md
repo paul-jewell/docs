@@ -10,7 +10,7 @@ title: zig-a-zig-ah! (CC2652 Stick)
  It features:
 
  - TI [CC2652R](http://www.ti.com/product/CC2652R) 2.4 GHz multi-protocol wireless microcontroller targeting Thread, Zigbee, Bluetooth 5 Low Energy, IEEE 802.15.4g, IPv6-enabled smart objects (6LoWPAN) and proprietary systems
- - Communicates with the host computer via the common CH340 USB-UART bridge, no manual driver installation needed in most cases (Windows and Linux)
+ - Communicates with the host computer via the common CH340 USB-UART bridge, no manual driver installation needed in most cases (Windows, Linux, FreeBSD, OpenBSD, and macOS), no driver support for illumos
  - Self-programming via the TI [CC-series serial bootloader](http://www.ti.com/lit/an/swra466c/swra466c.pdf). As long as it is not explicitly disabled in code, no external programmer needed! Pushbutton on the default pin to trigger this mode
  - cJTAG debug header, in case you disable BSL by accident or want a proper debug interface
  - SMA antenna port for an external antenna of your choice
