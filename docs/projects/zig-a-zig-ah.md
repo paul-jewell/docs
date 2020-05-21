@@ -86,7 +86,14 @@ If you need to install the drivers manually, head over [here](http://www.wch.cn/
 
 #### macOS
 
-(tbd)
+Issue `dmesg` and observe the device enumeration:
+
+```
+IOUserSerial::AppleUSBCHCOM::<private>: 127 0x6000013e4058
+IOUserSerial::<private>: 456 0x6000013e4058
+IOUserSerial::<private>: 41 0x6000013e4058
+DK: AppleUSBCHCOM-0x1000030ea::start(IOUSBHostInterface-0x1000030e5) ok
+```
 
 ### Flashing using BSL
 
