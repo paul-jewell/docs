@@ -266,9 +266,9 @@ Here'a handy pinout reference for CC-DEVPACK-DEBUG:
 
 ### Zigbee2mqtt
 
-Zigbee2mqtt has support for CC2652R chip used on this board, for now still in development phase. Download the Z-Stack coordinator firmware from [@Koenkk's firmware repository](https://github.com/Koenkk/Z-Stack-firmware/tree/develop).
+Zigbee2mqtt has support for CC2652R chip used on this board. Download the Z-Stack coordinator firmware from [@Koenkk's firmware repository](https://github.com/Koenkk/Z-Stack-firmware).
 
-As of writing, the latest development firmware available is: [CC26X2R1_20200417.zip](https://raw.githubusercontent.com/Koenkk/Z-Stack-firmware/develop/coordinator/Z-Stack_3.x.0/bin/CC26X2R1_20200417.zip). Download and extract this and follow the ["Flashing using BSL"](#flashing-using-bsl) instructions to burn this on your zzh.
+As of writing, the latest firmware available is: [CC26X2R1_20200417.zip](https://raw.githubusercontent.com/Koenkk/Z-Stack-firmware/master/coordinator/Z-Stack_3.x.0/bin/CC26X2R1_20200417.zip). Download and extract this and follow the ["Flashing using BSL"](#flashing-using-bsl) instructions to burn this on your zzh.
 
 #### Configuration
 
