@@ -331,10 +331,16 @@ If ZHA is unable to connect to the zzh adapter then try replugging the zzh USB a
 
 ## Aside: TI Part Numbers
 
-TI has quite a few different chips and they are all used/mentioned in open-source Zigbee world which can be daunting if you are just starting out. Here's a quick summary of part numbers and key features, starting with the older generation:
+TI has quite a few different chips and they are all used/mentioned in open-source Zigbee world which can be daunting if you are just starting out. Here's a quick summary of part numbers and key features.
 
-  - [CC2530](https://www.ti.com/product/CC2530): 2.4GHz Zigbee and IEEE 802.15.4 wireless MCU. 8051 core, has very little RAM. Needs expensive compiler license for official TI stack.
-  - [CC2531](https://www.ti.com/product/CC2531): CC2530 with built-in USB. Used in the cheap "Zigbee sticks" sold everywhere.
+The older generation:
+
+  - [CC2530](https://www.ti.com/product/CC2530): 2.4GHz Zigbee and IEEE 802.15.4 wireless MCU. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
+  - [CC2531](https://www.ti.com/product/CC2531): CC2530 with built-in USB. Used in the cheap "Zigbee sticks" sold everywhere. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
+
+The middle generation:
+
+- [CC2538](https://www.ti.com/product/CC2538): CC2538 Zigbee, 6LoWPAN, and IEEE 802.15.4 wireless MCU. ARM Cortex-M3 core with with 512kB Flash and 32kB RAM.
 
 The newer generation:
 
