@@ -355,7 +355,7 @@ The newer generation:
 
 Auxiliary chips:
 
-  - [CC2591](https://www.ti.com/product/CC2591) and [CC2592](https://www.ti.com/product/CC2592): 2.4 GHz range extenders. **These are not wireless MCUs, just auxillary RF PA and LNA in the same package.**
+  - [CC2590](https://www.ti.com/product/CC2590), [CC2591](https://www.ti.com/product/CC2591), and [CC2592](https://www.ti.com/product/CC2592): 2.4 GHz range extenders. **These are not wireless MCUs, just auxillary RF PA (Power Amplifier) and LNA (Low Noise Amplifier) in the same package.** These RF frontend power amplifiers can amplify signal strenght by extending transmit power up to +14dBm (CC2590) and +22dBm (CC2591 and CC2592) respectively, and thus provide improved receiver sensitivity.
 
 ## Downloads
 
