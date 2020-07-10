@@ -1,6 +1,7 @@
 site_name: Electrolama
 repo_url: https://github.com/electrolama/docs
-plugins: []
+plugins:
+  - awesome-pages     # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin/
 markdown_extensions:
   - codehilite
 theme:

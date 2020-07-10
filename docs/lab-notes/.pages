@@ -1,0 +1,2 @@
+# Hide from the nav bar, top level link added in base.html
+hide: true

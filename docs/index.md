@@ -42,13 +42,15 @@ document.addEventListener( "DOMContentLoaded", function(event) {
 } );
 </script>
 
-(Pulled from the [docs repository](https://github.com/electrolama/docs/commits/master) with JavaScript, might be blank if you have it disabled)
-
 ![Under Construction](_assets/under_construction.gif) Perpetually under construction 
 
 
 ## Contact
 
-For general enquiries, email us at hello@this domain.
+For general enquiries, email us at hello@this-domain.
 
 For support regarding Tindie purchases: support@this-domain.
+
+
+
+
