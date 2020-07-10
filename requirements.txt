@@ -1,4 +1,4 @@
 mkdocs==1.1
 #git+https://github.com/mkdocs/mkdocs.git@5230c93593e34f1e76f278afac2afb9eb15181c9
-mkdocs-awesome-pages-plugin=2.2.1
+mkdocs-awesome-pages-plugin==2.2.1
 Pygments==2.5.2
