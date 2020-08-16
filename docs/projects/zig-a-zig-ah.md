@@ -307,32 +307,40 @@ A checklist to go through if you get this error message:
   * Are you using any virtualisation/container pass-through for the USB device? There have been reports of these potentially causing problems so for debugging purposes try communicating with the adapter directly from the host OS it is connected to (i.e: see if it works without the bypass)
   * Make sure you are using an up-to-date version of Zigbee2mqtt on the host and firmware on the adapter.
 
-### Zigbee Home Automation for Home Assistant
+### Zigbee Home Automation (ZHA) integration in Home Assistant
 
-[Zigbee Home Automation](https://www.home-assistant.io/integrations/zha/) or ZHA is an integration for Home Assistant. It uses the same Z-Stack coordinator firmware as Zigbee2mqtt and connects zzh directly with Home Assistant.    
-**Support for TI chips (especially CC2562) is still in development stage!**
+[Zigbee Home Automation (ZHA)](https://www.home-assistant.io/integrations/zha/) integration is a built-in component in Home Assistant for native support, this makes the initial configuration very simple as you connect to the zzh adapter directly from Home Assistant's UI.
+
+Note! **Support for Texas Intruments chips (especially CC2562) in Home Assistant's ZHA is still experimental as in early development!**
+
+ZHA depends on the [zigpy python library (plus radio libraries for zigpy)](https://github.com/zigpy/) to support different Zigbee adapters/modules, and the radio library for TI CI chips supports the [same Z-Stack coordinator firmware as Zigbee2mqtt](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator).
 
 #### Configuration
 
-Make sure zzh is recognised and available to your Home Assistant instance. Navigate to _Configuration -> Integrations_, click on the `+` icon, find _Zigbee Home Automation_ and click on it.
+Make sure zzh is recognised and available to your Home Assistant's ZHA instance. Navigate to _Configuration -> Integrations_, click on the `+` icon, find _Zigbee Home Automation_ and click on it.
 
 ![ZHA Integration](/_assets/zzh-zha-install.png)
 
-Choose the device path of zzh and wait for installation to complete. 
-navigate to the ZHA integration at the bottom of the Configuration page. You will now have "Texas Instruments ZNP Coordinator" as the first device in ZHA. 
+Choose the device path of zzh and wait for installation to complete. Navigate to the ZHA integration at the bottom of the Configuration page. You will now have "Texas Instruments ZNP Coordinator" as the first device in ZHA. 
 
 ![ZHA Coordinator](/_assets/zzh-zha-coord.png)
 
 In case the autodetection fails, a manual setup menu will be displayed. Check the device path and set _Radio Type_ as **ti_cc**. Leave other options as they are.
 
-If ZHA is unable to connect to zzh try replugging zzh or change to another USB port.
+If ZHA is unable to connect to the zzh adapter then try replugging the zzh USB adapter or try moving it to another USB-port.
 
 ## Aside: TI Part Numbers
 
-TI has quite a few different chips and they are all used/mentioned in open-source Zigbee world which can be daunting if you are just starting out. Here's a quick summary of part numbers and key features, starting with the older generation:
+TI has quite a few different chips and they are all used/mentioned in open-source Zigbee world which can be daunting if you are just starting out. Here's a quick summary of part numbers and key features.
 
-  - [CC2530](https://www.ti.com/product/CC2530): 2.4GHz Zigbee and IEEE 802.15.4 wireless MCU. 8051 core, has very little RAM. Needs expensive compiler license for official TI stack.
-  - [CC2531](https://www.ti.com/product/CC2531): CC2530 with built-in USB. Used in the cheap "Zigbee sticks" sold everywhere.
+The older generation:
+
+  - [CC2530](https://www.ti.com/product/CC2530): 2.4GHz Zigbee and IEEE 802.15.4 wireless MCU. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
+  - [CC2531](https://www.ti.com/product/CC2531): CC2530 with built-in USB. Used in the cheap "Zigbee sticks" sold everywhere. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
+
+The middle generation:
+
+- [CC2538](https://www.ti.com/product/CC2538): CC2538 Zigbee, 6LoWPAN, and IEEE 802.15.4 wireless MCU. ARM Cortex-M3 core with with 512kB Flash and 32kB RAM.
 
 The newer generation:
 
@@ -347,7 +355,7 @@ The newer generation:
 
 Auxiliary chips:
 
-  - [CC2591](https://www.ti.com/product/CC2591) and [CC2592](https://www.ti.com/product/CC2592): 2.4 GHz range extenders. **These are not wireless MCUs, just auxillary RF PA and LNA in the same package.**
+  - [CC2590](https://www.ti.com/product/CC2590), [CC2591](https://www.ti.com/product/CC2591), and [CC2592](https://www.ti.com/product/CC2592): 2.4 GHz range extenders. **These are not wireless MCUs, just auxillary RF PA (Power Amplifier) and LNA (Low Noise Amplifier) in the same package.** These RF frontend power amplifiers can amplify signal strenght by extending transmit power up to +14dBm (CC2590) and +22dBm (CC2591 and CC2592) respectively, and thus provide improved receiver sensitivity.
 
 ## Downloads
 
