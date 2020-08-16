@@ -27,7 +27,7 @@ Think of it as an upgrade to the ubiquitous [CC2531 USB Sticks](https://www.goog
 
 There are two versions of zzh:
 
-  - **zzh** (CC2652R) Revision A is released and a batch of boards have been produced. See below for puchasing details.
+  - **zzh** (CC2652R) Revision A is released and a batch of boards have been produced. See below for purchasing details.
   - **zzh-p** is the experimental version with CC2652P (built-in PA). Shares most of the same design with zzh except for the RF parts and will fit in a slightly larger case. It is a work in progress, sign up to the [Electrolama mailing list](https://mailchi.mp/1746be86dd81/electrolama) to be notified of project updates and when kits/assembled units go on sale. A sneak peek:
 
 ![zzh-p preview](/_assets/zzh-p-preview.png)
@@ -36,7 +36,7 @@ There are two versions of zzh:
 
 ## Purchase 
 
-Assembled versions of zzh will be available on the [Electrolama Tindie Store](https://www.tindie.com/stores/electrolama/) very soon. Orders ship from London, UK.
+Assembled versions of zzh are available on the [Electrolama Tindie Store](https://www.tindie.com/stores/electrolama/). Orders ship from London, UK.
 
 Each zzh order contains a fully assembled and tested PCBA along with a plastic enclosure and a small antenna:
 
@@ -94,6 +94,13 @@ IOUserSerial::<private>: 456 0x6000013e4058
 IOUserSerial::<private>: 41 0x6000013e4058
 DK: AppleUSBCHCOM-0x1000030ea::start(IOUSBHostInterface-0x1000030e5) ok
 ```
+
+#### Synology
+
+The drivers for the CH340 chip appear to be missing on some (all?) Synology NAS devices. If you're not seeing any serial devices when you issue `dmesg` or `lsusb`, this is probably the case for your device as well.
+
+`UsbSerialDrivers DSM 6.2 v6-4` from [this third party repository](http://www.jadahl.com/drivers_6.2) installs the `ch341.ko` needed.
+
 
 ### Flashing using BSL
 
@@ -160,7 +167,7 @@ $ ./cc2538-bsl.py -p /dev/ttyUSB0 -e
 #### Windows
 To run cc2538-bsl.py you need to have Python installed on your system. Download [Python for Windows](https://www.python.org/downloads/) and install. After installation verify Python is correctly installed by running `python -V` in Command Prompt. It should return Python and the version number.
 
-If you receive a message similiar to: `Python is not recognized as an internal or external command, operable program or batch file.` means Python is either not installed or the system variable path hasn’t been set. You’ll need to launch Python from the folder in which it is installed or adjust your system variables to allow it to be launched from any location.
+If you receive a message similar to `Python is not recognized as an internal or external command, operable program or batch file.`, this means Python is either not installed or the system variable PATH hasn’t been set. You’ll need to launch Python from the folder in which it is installed or adjust your system variables to allow it to be launched from any location.
 
 ###### Install required dependencies 
 Open Command Prompt and check if `pip` is installed by running `pip -V` which will show its version and install location.
@@ -204,7 +211,7 @@ _Example of a successful flash of Z-Stack coordinator firmware under Windows:_
 ![zzh flash complete](/_assets/zzh-flash-complete.jpg)
 
 #### macOS
-To run cc2538-bsl.py you need to install some extra python dependancies, python3 should already be shipped with macOS (Catalina).
+To run cc2538-bsl.py you need to install some extra python dependencies, python3 should already be shipped with macOS (Catalina).
 
 ##### Download and extract cc2538-bsl
 
@@ -213,7 +220,7 @@ wget -O cc2538-bsl.zip https://codeload.github.com/JelmerT/cc2538-bsl/zip/master
 ```
 ##### Install required dependencies
 
-As we cannot write to the system's location we need to install the dependancies with in the user location.
+As we cannot write to the system's location we need to install the dependencies with in the user location.
 The downside is this has to be installed for every user that will use cc2538-dsl.
 
 ```bash
@@ -271,6 +278,8 @@ Here'a handy pinout reference for CC-DEVPACK-DEBUG:
 
 ![CC-DEVPACK-DEBUG Pinout](/_assets/cc-devpack-debug-pinout.png)
 
+(zzh-p will not require this adapter as there is enough space on the board for the standard cJTAG header)
+
 ### Zigbee2mqtt
 
 Zigbee2mqtt has support for CC2652R chip used on this board. Download the Z-Stack coordinator firmware from [@Koenkk's firmware repository](https://github.com/Koenkk/Z-Stack-firmware).
@@ -301,7 +310,7 @@ This is a general error if there are communication problems with the adapter use
 
 A checklist to go through if you get this error message:
 
-  * Try replugging zzh once or twice.
+  * Try re-plugging in zzh once or twice.
   * Make sure you have the correct serial port and `rtscts: false` option set in your `configuration.yaml`
   * Make sure you have the correct firmware burned on your adapter. **Remember, zzh boards ship blank** so you will need to burn the appropriate firmware before using it with any application.
   * Are you using any virtualisation/container pass-through for the USB device? There have been reports of these potentially causing problems so for debugging purposes try communicating with the adapter directly from the host OS it is connected to (i.e: see if it works without the bypass)
@@ -311,7 +320,7 @@ A checklist to go through if you get this error message:
 
 [Zigbee Home Automation (ZHA)](https://www.home-assistant.io/integrations/zha/) integration is a built-in component in Home Assistant for native support, this makes the initial configuration very simple as you connect to the zzh adapter directly from Home Assistant's UI.
 
-Note! **Support for Texas Intruments chips (especially CC2562) in Home Assistant's ZHA is still experimental as in early development!**
+Note! **Support for Texas Instruments chips (especially CC2562) in Home Assistant's ZHA is still experimental as in early development!**
 
 ZHA depends on the [zigpy python library (plus radio libraries for zigpy)](https://github.com/zigpy/) to support different Zigbee adapters/modules, and the radio library for TI CI chips supports the [same Z-Stack coordinator firmware as Zigbee2mqtt](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator).
 
@@ -327,7 +336,7 @@ Choose the device path of zzh and wait for installation to complete. Navigate to
 
 In case the autodetection fails, a manual setup menu will be displayed. Check the device path and set _Radio Type_ as **ti_cc**. Leave other options as they are.
 
-If ZHA is unable to connect to the zzh adapter then try replugging the zzh USB adapter or try moving it to another USB-port.
+If ZHA is unable to connect to the zzh adapter then try re-plugging in the zzh USB adapter or try moving it to another USB-port.
 
 ## Aside: TI Part Numbers
 
@@ -338,9 +347,9 @@ The older generation:
   - [CC2530](https://www.ti.com/product/CC2530): 2.4GHz Zigbee and IEEE 802.15.4 wireless MCU. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
   - [CC2531](https://www.ti.com/product/CC2531): CC2530 with built-in USB. Used in the cheap "Zigbee sticks" sold everywhere. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
 
-The middle generation:
+The "middle" generation:
 
-- [CC2538](https://www.ti.com/product/CC2538): CC2538 Zigbee, 6LoWPAN, and IEEE 802.15.4 wireless MCU. ARM Cortex-M3 core with with 512kB Flash and 32kB RAM.
+- [CC2538](https://www.ti.com/product/CC2538): 2.4GHz Zigbee, 6LoWPAN, and IEEE 802.15.4 wireless MCU. ARM Cortex-M3 core with with 512kB Flash and 32kB RAM.
 
 The newer generation:
 
@@ -355,7 +364,7 @@ The newer generation:
 
 Auxiliary chips:
 
-  - [CC2590](https://www.ti.com/product/CC2590), [CC2591](https://www.ti.com/product/CC2591), and [CC2592](https://www.ti.com/product/CC2592): 2.4 GHz range extenders. **These are not wireless MCUs, just auxillary RF PA (Power Amplifier) and LNA (Low Noise Amplifier) in the same package.** These RF frontend power amplifiers can amplify signal strenght by extending transmit power up to +14dBm (CC2590) and +22dBm (CC2591 and CC2592) respectively, and thus provide improved receiver sensitivity.
+  - [CC2590](https://www.ti.com/product/CC2590), [CC2591](https://www.ti.com/product/CC2591), and [CC2592](https://www.ti.com/product/CC2592): 2.4 GHz range extenders. **These are not wireless MCUs, just auxillary RF [PA (Power Amplifier)](https://en.wikipedia.org/wiki/RF_power_amplifier) and [LNA (Low Noise Amplifier)](https://en.wikipedia.org/wiki/Low-noise_amplifier) in the same package.**.
 
 ## Downloads
 
@@ -382,6 +391,7 @@ Thanks to:
   - [Fredrik K](https://www.linkedin.com/in/fredrik-kervel/) for his domain expertise, design review and (much appreciated!) RF help
   - [@KoenKK](https://github.com/koenkk/) for his work on the great Zigbee2mqtt project and testing prototypes
   - [@egelmex](https://twitter.com/egelmex) for testing prototypes, improving docs and being an all around cool dude
+  - All the [contributors to the documentation repo](https://github.com/electrolama/docs/graphs/contributors)!
 
 Name credit goes to [@9600](https://twitter.com/9600/), this had a much boring name before he suggested zig-a-zig-ah!
 
