@@ -37,26 +37,29 @@ An optional debug adapter kit of parts (requires assembly) can also be purchased
 A portion of each sale will be donated to [@Koenkk](https://github.com/Koenkk/) to support his work on [Zigbee2mqtt](https://github.com/Koenkk/zigbee2mqtt) and the [public firmware images](https://github.com/Koenkk/Z-Stack-firmware) used by zzh and many other projects.
 
 
+## Important Note
+
+**Please keep in mind that zzh is a general purpose development board. It is shipped with a simple test program that just blinks the LED on and off (with no radio functionality) to verify that the MCU is running. You will need to program it before it does anything meaningful.** Given the application dependent nature of this board, limited after-sales support can be provided for Tindie purchases (For example: we can help you program this board but can't fix your Zigbee network range issues or offer specific software support). 
+
+
 ## User Manual
 
-### Important Note
+<p class="info">ℹ️ Documentation has moved! Please head over to the <a href="/radio-docs">Quick Start guide</a> and follow along.</p>
 
-**Please keep in mind that zzh is a general purpose development board and as such, it is shipped "blank" with no code on the wireless microcontroller. You will need to program it before it does anything meaningful.** Given the application dependent nature of this board, limited after-sales support can be provided for Tindie purchases (For example: we can help you program this board but can't fix your Zigbee network range issues or offer specific software support). 
+Links below are kept for archival reasons.
+
 
 ### Drivers for CH340
 
 (Moved [here](/radio-docs/drivers/#ch340-zzh-only))
 
-
 ### Flashing using BSL
 
 (Moved [here](/radio-docs/flash-cc-bsl/))
 
-
 ### Flashing using external debugger
 
-Instructions on how to use CC-DEVPACK-DEBUG and other external debuggers are available [here](/radio-docs/advanced/flash-jtag/).
-
+(Moved [here](/radio-docs/advanced/flash-jtag/))
 
 ### Zigbee2mqtt
 
@@ -71,22 +74,27 @@ Instructions on how to use CC-DEVPACK-DEBUG and other external debuggers are ava
 
 (Moved [here](/radio-docs/advanced/ti-part-numbers/))
 
+
 ## Downloads
 
   - EAGLE source files in [electrolama/zig-a-zig-ah](https://github.com/electrolama/zig-a-zig-ah)
   - [Schematic (pdf), Revision A](/_assets/zzh-revA-schematic.pdf)
 
+
 ## Changelog
 
 In the repo, [click here](https://github.com/electrolama/zig-a-zig-ah/blob/master/CHANGELOG.md).
+
 
 ## License
 
 zig-a-zig-ah! is designed by Electrolama / Omer Kilic and licensed under the [Solderpad Hardware License 2.0](https://solderpad.org/licenses/SHL-2.0/). 
 
+
 ### Regulatory Notice
 
 This kit is designed to allow Product developers to evaluate electronic components, circuitry, or software associated with the kit to determine whether to incorporate such items in a finished product and Software developers to write software applications for use with the end product. This kit is not a finished product and when assembled may not be resold or otherwise marketed unless all required FCC (or any other local authority) equipment authorizations are first obtained. Operation is subject to the condition that this product not cause harmful interference to licensed radio stations and that this product accept harmful interference.
+
 
 ## ACKs
 
@@ -100,8 +108,9 @@ Thanks to:
 
 Name credit goes to [@9600](https://twitter.com/9600/), this had a much boring name before he suggested zig-a-zig-ah!
 
+
 ## Contact 
 
-For general enquiries, suggestions and errors spotted: Email us at hello@this-domain. Community contributions to these pages are very much encouraged so you could also send pull requests on the [documentation repo](https://github.com/electrolama/docs) (source of these pages) with your proposed changes.
+For general enquiries, suggestions and errors spotted: Email us at [hello@electrolama.com](mailto:hello@electrolama.com). Community contributions to these pages are very much encouraged so you could also send pull requests on the [documentation repo](https://github.com/electrolama/docs) (source of these pages) with your proposed changes.
 
-For support regarding Tindie purchases: support@this-domain.
+For support regarding Tindie purchases: [support@electrolama.com](mailto:support@electrolama.com). Please note that we do not monitor Github issues or third party forums for customer support.
