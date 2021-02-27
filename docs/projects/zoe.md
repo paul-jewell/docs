@@ -253,6 +253,6 @@ This kit is designed to allow Product developers to evaluate electronic componen
 
 ## Contact 
 
-For general enquiries, suggestions and errors spotted: Email us at hello@this-domain. Community contributions to these pages are very much encouraged so you could also send pull requests on the [documentation repo](https://github.com/electrolama/docs) (source of these pages) with your proposed changes.
+For general enquiries, suggestions and errors spotted: Email us at [hello@electrolama.com](mailto:hello@electrolama.com). Community contributions to these pages are very much encouraged so you could also send pull requests on the [documentation repo](https://github.com/electrolama/docs) (source of these pages) with your proposed changes.
 
-For support regarding Tindie purchases: support@this-domain.
+For support regarding Tindie purchases: [support@electrolama.com](mailto:support@electrolama.com). Please note that we do not monitor Github issues or third party forums for customer support.
