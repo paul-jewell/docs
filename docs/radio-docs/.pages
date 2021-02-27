@@ -1,6 +1,7 @@
 nav:
     - Quick Start (Read First): index.md
     - Driver Installation: drivers.md
+    - ROM Bootloader (BSL): bsl.md
     - flash-ti-flash-prog.md
     - flash-cc-bsl.md
     - rpi-initial-setup.md
