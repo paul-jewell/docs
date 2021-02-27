@@ -11,7 +11,7 @@ zzh, zzhp and zzhp-lite all share the same common architecture:
 
 ![Radio sticks Block Diagram](/_assets/radio-sticks-block.png)
 
-First step in getting your stick working is to ensure that your computer, server or Raspberry Pi recognises the device plugged in and installs the drivers needed to communicate with the wireless microcontroller that does all the heavy lifting. In most cases, you will not need to install drivers as most operating systems will take care of this for you but if needed, instructions for driver installation can be found [here](/radio-docs/drivers/).
+First step in getting your stick working is to ensure that your computer, server or Raspberry Pi recognises the device plugged in (specifically, the "USB to Serial Converter" chip) and installs the drivers needed. In most cases, you will not need to install drivers as most operating systems will take care of this for you but if needed, instructions for driver installation can be found [here](/radio-docs/drivers/).
 
 Each stick is shipped with a test firmware that blinks the on-board LED, on and off continously. This is a "sanity check", to show that the device has survived its journey to you but it does not mean that it is ready for use. You will need to flash the correct firmware, once you've made sure that the stick is recognised by your operating system and drivers installed.
 
@@ -20,7 +20,7 @@ Each stick is shipped with a test firmware that blinks the on-board LED, on and 
 
 Good news: As long as you use the correct firmware for your stick, you do not need an external debugger/programmer as the chips used have a built-in bootloader (BSL)! 
 
-<p class="warn">⚠️ <b>IMPORTANT:</b> It is crucial that you download the correct firmware for your stick as using the wrong firmware will disable the BSL and you will need an external debugger / programmer to flash your stick again. Instructions for that can be found <a href="/radio-docs/advanced/flash-jtag/">here</a>.</p>
+<p class="warn">⚠️ <b>WARNING:</b> It is crucial that you download the correct firmware for your stick as using the wrong firmware will disable the BSL and you will need an external debugger / programmer to flash your stick again. Instructions for that can be found <a href="/radio-docs/advanced/flash-jtag/">here</a>.</p>
 
 There are two ways you can use your radio stick, either as a **coordinator** or a **router**.
 
