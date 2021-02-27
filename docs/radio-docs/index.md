@@ -16,7 +16,7 @@ First step in getting your stick working is to ensure that your computer, server
 Each stick is shipped with a test firmware that blinks the on-board LED, on and off continously. This is a "sanity check", to show that the device has survived its journey to you but it does not mean that it is ready for use. You will need to flash the correct firmware, once you've made sure that the stick is recognised by your operating system and drivers installed.
 
 
-## Step 2: Download and flash firmware 
+## Step 2: Download the correct firmware for your stick
 
 Good news: As long as you use the correct firmware for your stick, you do not need an external debugger/programmer as the chips used have a built-in bootloader (BSL)! 
 
@@ -38,20 +38,23 @@ There are two ways you can use your radio stick, either as a **coordinator** or 
 | zzh       | [CC2652R_router_20210128](https://github.com/Koenkk/Z-Stack-firmware/raw/master/router/Z-Stack_3.x.0/bin/CC2652R_router_20210128.zip)                |
 | zzhp, zzhp-lite and zoe2 | [CC1352P2_CC2652P_other_router_20210128](https://github.com/Koenkk/Z-Stack-firmware/raw/master/router/Z-Stack_3.x.0/bin/CC1352P2_CC2652P_other_router_20210128.zip) |
 
+
+## Step 3: Flash the firmware on your stick
+
 With the firmware of your choice downloaded and unzipped, you should end up with a single .hex file that will need to be flashed to your stick. Two options for that:
 
   - The beginner friendly, Windows-only option: [Flash firmware using TI's Flash Programmer 2](/radio-docs/flash-ti-flash-prog/)
   - If you're comfortable running Python scripts, cross-platform option: [Flash firmware using cc2538-bsl](/radio-docs/flash-cc-bsl/)
 
 
-## Step 3: Setup zigbee2mqtt or ZHA
+## Step 4: Setup zigbee2mqtt or ZHA
 
 Next up: Configure your choice of software so that it can talk to your stick.
 
 For zigbee2mqtt instructions: [click here](/radio-docs/zigbee2mqtt/) or for ZHA (Home Assistant): [here](/radio-docs/zha-home-assistant/).
 
 
-## Step 4: Have fun!
+## Step 5: Have fun!
 
 With your stick flashed and the software of your choice configured, pair your devices with your newly set-up software and go forth and explore the world of open-source Home Automation!
 
