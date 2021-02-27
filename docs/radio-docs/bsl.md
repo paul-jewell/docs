@@ -7,7 +7,7 @@ One of the nice things about the new chips from TI is the inclusion of a serial 
 <p class="warn">⚠️ <b>WARNING:</b> Given that the bootloader is configurable, it is crucial that you download the correct firmware for your stick as using the wrong firmware will disable the BSL and you will need an external debugger/programmer to flash your stick again. Instructions for that can be found <a href="/radio-docs/advanced/flash-jtag/">here</a>.</p>
 
 
-## How to enter BSL
+## How to enter BSL mode
 
 To trigger the ROM bootloader, follow these steps:
 
