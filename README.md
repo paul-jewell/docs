@@ -13,8 +13,8 @@ The site is deployed from the master branch of this repo via Netlify, previews a
 ## Local Dev
 
 ```
-$ virtualenv env
-$ source env/bin/activate
+$ virtualenv env  (or python -m venv env)
+$ source env/bin/activate  (or env\Scripts\activate.bat on Windows)
 $ pip install -r requirements.txt
 $ mkdocs serve
 ```

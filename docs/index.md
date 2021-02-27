@@ -45,12 +45,13 @@ document.addEventListener( "DOMContentLoaded", function(event) {
 ![Under Construction](_assets/under_construction.gif) Perpetually under construction 
 
 
-## Contact
+## Contact 
 
-For general enquiries, email us at hello@this-domain.
+For general enquiries, suggestions and errors spotted: Email us at [hello@electrolama.com](mailto:hello@electrolama.com). Community contributions to these pages are very much encouraged so you could also send pull requests on the [documentation repo](https://github.com/electrolama/docs) (source of these pages) with your proposed changes.
 
-For support regarding Tindie purchases: support@this-domain.
+For support regarding Tindie purchases: [support@electrolama.com](mailto:support@electrolama.com). Please note that we do not monitor Github issues or third party forums for customer support.
 
+## License
+This repository (contents of [electrolama.com](https://electrolama.com), documentation for Electrolama projects) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
-
-
+For specific licenses that apply to Electrolama hardware projects, please see license notices in relevant repositories.

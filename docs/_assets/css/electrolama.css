@@ -155,3 +155,8 @@ blockquote {
 .codehilite .vi { color: #19177C } /* Name.Variable.Instance */
 .codehilite .vm { color: #19177C } /* Name.Variable.Magic */
 .codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+.warn {
+    border: 5px solid red;
+    padding: 20px;
+}

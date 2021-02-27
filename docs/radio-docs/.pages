@@ -1,0 +1,10 @@
+nav:
+    - Quick Start (Read First): index.md
+    - Driver Installation: drivers.md
+    - flash-ti-flash-prog.md
+    - flash-cc-bsl.md
+    - rpi-initial-setup.md
+    - zigbee2mqtt.md
+    - zha-home-assistant.md
+    - troubleshooting.md
+    - Advanced Topics: advanced

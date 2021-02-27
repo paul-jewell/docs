@@ -2,7 +2,7 @@ title: zig-a-zig-ah! (CC2652 Stick)
 
 # Overview
 
-![zzh PCBA](/_assets/zzh-pcba-green.jpg)
+![zzh PCBA](/_assets/zzh-pcba-green-v2.jpg)
 
 
  zig-a-zig-ah! (zzh, for short) is a tiny "USB stick" form-factor development board for multiprotocol RF tinkering.
@@ -18,21 +18,9 @@ title: zig-a-zig-ah! (CC2652 Stick)
 
 It is designed to fit in a tiny *[Gōng mó](https://www.theatlantic.com/technology/archive/2014/05/chinas-mass-production-system/370898/)* "USB Shell" and looks a bit like this when paired with your favourite SBC:
 
-![zzh plugged in to Raspberry Pi](/_assets/zzh-plugged-in.jpg)
+![zzh plugged in to Raspberry Pi](/_assets/zzh-plugged-in-v2.jpg)
 
 Think of it as an upgrade to the ubiquitous [CC2531 USB Sticks](https://www.google.com/search?q=cc2531+stick) commonly used for Zigbee tinkering. CC2652 has a much beefier processor, more memory and a sane free compiler that should enable easier development compared to the old 8051 based CC2530/1 devices.
-
-
-## Flavours
-
-There are two versions of zzh:
-
-  - **zzh** (CC2652R) Revision A is released and a batch of boards have been produced. See below for purchasing details.
-  - **zzh-p** is the experimental version with CC2652P (built-in PA). Shares most of the same design with zzh except for the RF parts and will fit in a slightly larger case. It is a work in progress, sign up to the [Electrolama mailing list](https://mailchi.mp/1746be86dd81/electrolama) to be notified of project updates and when kits/assembled units go on sale. A sneak peek:
-
-![zzh-p preview](/_assets/zzh-p-preview.png)
-
-[Click here](#aside-ti-part-numbers) for a summary of different chips mentioned, if you are confused about all these part numbers.
 
 ## Purchase 
 
@@ -40,11 +28,11 @@ Assembled versions of zzh are available on the [Electrolama Tindie Store](https:
 
 Each zzh order contains a fully assembled and tested PCBA along with a plastic enclosure and a small antenna:
 
-![zzh case and antenna](/_assets/zzh-case-antenna.jpg)
+![zzh case and antenna](/_assets/zzh-kit-v2.jpg)
 
 An optional debug adapter kit of parts (requires assembly) can also be purchased:
 
-![zzh debug adapter kit](/_assets/zzh-debug-adapter-kit.jpg)
+![zzh debug adapter kit](/_assets/zzh-debug-adapter-kit-v2.jpg)
 
 A portion of each sale will be donated to [@Koenkk](https://github.com/Koenkk/) to support his work on [Zigbee2mqtt](https://github.com/Koenkk/zigbee2mqtt) and the [public firmware images](https://github.com/Koenkk/Z-Stack-firmware) used by zzh and many other projects.
 
@@ -57,316 +45,31 @@ A portion of each sale will be donated to [@Koenkk](https://github.com/Koenkk/) 
 
 ### Drivers for CH340
 
-The USB-Serial functionality is handled all externally by CH340 and as far as CC2652 is concerned, communication happens over straight UART. First step in getting set up with zzh is to ensure that the host computer has the right drivers for the CH340 installed.
-
-Plug your device in (don't worry about the firmware just yet) and ensure that zzh is recognised by your operating system before proceeding to the flashing steps.
-
-#### Linux
-
-Issue `dmesg` and observe the device enumeration:
-
-```Shell
-[152343.203201] usb 1-1.4: new full-speed USB device number 5 using dwc_otg
-[152343.336384] usb 1-1.4: New USB device found, idVendor=1a86, idProduct=7523, bcdDevice= 2.62
-[152343.336400] usb 1-1.4: New USB device strings: Mfr=0, Product=2, SerialNumber=0
-[152343.336409] usb 1-1.4: Product: USB2.0-Serial
-[152343.338315] ch341 1-1.4:1.0: ch341-uart converter detected
-[152343.341440] usb 1-1.4: ch341-uart converter now attached to ttyUSB0
-```
-
-CH340 drivers have been in the kernel for a while and as long as you are using a relatively new version ([driver changelog](https://github.com/torvalds/linux/commits/master/drivers/usb/serial/ch341.c)), you shouldn't have any issues.
-
-#### Windows
-
-The drivers for CH340 should be automatically be picked up and you should see your device under "Ports (COM & LPT)" in Device Manager:
-
-![serial port windows](/_assets/zzh-port-windows.png)
-
-If you need to install the drivers manually, head over [here](http://www.wch.cn/downloads/CH341SER_ZIP.html) for the official drivers.
-
-#### macOS
-
-Issue `dmesg` and observe the device enumeration:
-
-```
-IOUserSerial::AppleUSBCHCOM::<private>: 127 0x6000013e4058
-IOUserSerial::<private>: 456 0x6000013e4058
-IOUserSerial::<private>: 41 0x6000013e4058
-DK: AppleUSBCHCOM-0x1000030ea::start(IOUSBHostInterface-0x1000030e5) ok
-```
-
-#### Synology
-
-The drivers for the CH340 chip appear to be missing on some (all?) Synology NAS devices. If you're not seeing any serial devices when you issue `dmesg` or `lsusb`, this is probably the case for your device as well.
-
-`UsbSerialDrivers DSM 6.2 v6-4` from [this third party repository](http://www.jadahl.com/drivers_6.2) installs the `ch341.ko` needed.
+(Moved [here](/radio-docs/drivers/#ch340-zzh-only))
 
 
 ### Flashing using BSL
 
-One of the nice things about these new chips from TI is the inclusion of a serial bootloader in the ROM. Enabled by default and available unless explicitly modified by the application (see `CCFG:BL_CONFIG`), you can flash code without needing an external programmer. In fact, if the device is empty (either fresh from the factory or after an erase cycle), it automatically enters the bootloader mode.
+(Moved [here](/radio-docs/flash-cc-bsl/))
 
-A summary of when the bootloader is invoked can be seen in this flowchart below:
-
-![bsl flowchart](/_assets/bsl-flowchart.png)
-
-(["CC2538/CC26x0/CC26x2 Serial Bootloader Interface"](http://www.ti.com/lit/an/swra466c/swra466c.pdf), Figure 1)
-
-The default "backdoor enable" pin on CC2652R is `DIO_13` ([not `DIO_11` as noted in SWRA466C!](https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/871984?LAUNCHXL-CC26X2R1-Bootloader-backdoor-enable-pin)) and zzh has a small pushbutton on this pin to make tinkering with it easier.
-
-To trigger the ROM bootloader, follow these steps:
-
-  - Unplug zzh from the host
-  - Press the `BSL` button on the board and keep holding while plugging the device back into the host:
-
-![zzh BSL pushbutton](/_assets/zzh-bsl-button.jpg)
-
-  - Give it a few seconds for the device to settle and set up and release the BSL button
-  - zzh should now be in ROM bootloader mode
-
-[TI CC13xx/CC2538/CC26xx Serial Boot Loader (cc2538-bsl for short)](https://github.com/JelmerT/cc2538-bsl) is a Python script that can be used to flash the board and should work fine on pretty much any OS.
-
-#### Linux
-To run cc2538-bsl.py you need to have python and pip installed on your system. If you don't have them installed, refer to your distribution package manager to get it set up. (On Debian/Ubuntu, `sudo apt update && sudo apt-get install python3-pip` should work. `sudo pip ...` is not the optimal way of installing packages but Python package management is out of scope for this document.)
-
-##### Download and extract cc2538-bsl
-
-``` bash
-wget -O cc2538-bsl.zip https://codeload.github.com/JelmerT/cc2538-bsl/zip/master && unzip cc2538-bsl.zip
-```
-##### Install required dependencies 
-
-```bash
-sudo pip3 install pyserial intelhex
-```
-
-##### Flash firmware
-
-At this point you are going to need a firmware file to flash to your device. As a test, you can grab [this small program (blink.bin)](/_assets/blink.bin) that toggles the LED connected to `DIO_7`.
-
-To flash `blink.bin`, run:
-
-```Shell
-$ ./cc2538-bsl.py -p /dev/ttyUSB0 -evw blink.bin
-```
-
-**Don't forget to change `/dev/ttyUSB0` to the port used on your machine!**
-
-This shouldn't take long and if successful, you will see blinkenlights!
-
-If you want to re-flash zzh with new firmware, put it in bootloader mode and follow the flashing instructions. **This will work as long as BSL is not disabled by the firmware you burn to these devices.**
-
-##### Erase flash
-
-To completely erase the device flash, run:
-
-```Shell
-$ ./cc2538-bsl.py -p /dev/ttyUSB0 -e
-```
-
-#### Windows
-To run cc2538-bsl.py you need to have Python installed on your system. Download [Python for Windows](https://www.python.org/downloads/) and install. After installation verify Python is correctly installed by running `python -V` in Command Prompt. It should return Python and the version number.
-
-If you receive a message similar to `Python is not recognized as an internal or external command, operable program or batch file.`, this means Python is either not installed or the system variable PATH hasn’t been set. You’ll need to launch Python from the folder in which it is installed or adjust your system variables to allow it to be launched from any location.
-
-###### Install required dependencies 
-Open Command Prompt and check if `pip` is installed by running `pip -V` which will show its version and install location.
-
-From the same Command Prompt run:
-
-```bash
-pip3 install pyserial intelhex
-```
-
-###### Download and extract cc2538-bsl
-
-Download the [zipped code](https://github.com/JelmerT/cc2538-bsl/archive/master.zip) and extract to a folder.
-
-
-###### Flash firmware
-
-At this point you are going to need a firmware file to flash to your device. As a test, you can grab [this small program (blink.bin)](/_assets/blink.bin) that toggles the LED connected to `DIO_7`. It is recommended to download it to the same folder cc2538-bsl is extracted to.
-
-To flash `blink.bin`, navigate to the folder where you extracted cc2538-bsl and open a Command Prompt there
-
-```bash
-cc2538-bsl.py -p COM14 -evw blink.bin
-```
-
-**Don't forget to change `COM14` to the port used on your machine!**
-
-This shouldn't take long and if successful, you will see blinkenlights!
-
-If you want to re-flash zzh with new firmware, put it in bootloader mode and follow the flashing instructions. **This will work as long as BSL is not disabled by the firmware you burn to these devices.**
-
-##### Erase flash
-
-To completely erase the device flash, run:
-
-```bash
-cc2538-bsl.py -p COM14 -e
-```
-
-_Example of a successful flash of Z-Stack coordinator firmware under Windows:_
-![zzh flash complete](/_assets/zzh-flash-complete.jpg)
-
-#### macOS
-To run cc2538-bsl.py you need to install some extra python dependencies, python3 should already be shipped with macOS (Catalina).
-
-##### Download and extract cc2538-bsl
-
-``` bash
-wget -O cc2538-bsl.zip https://codeload.github.com/JelmerT/cc2538-bsl/zip/master && unzip cc2538-bsl.zip
-```
-##### Install required dependencies
-
-As we cannot write to the system's location we need to install the dependencies with in the user location.
-The downside is this has to be installed for every user that will use cc2538-dsl.
-
-```bash
-$ /usr/bin/python3 -m pip install --user pyserial intelhex
-```
-
-##### Flash firmware
-
-At this point you are going to need a firmware file to flash to your device. As a test, you can grab [this small program (blink.bin)](/_assets/blink.bin) that toggles the LED connected to `DIO_7`.
-
-To flash `blink.bin`, run:
-
-```bash
-$ ls -l /dev/tty.usbserial-*
-$ ./cc2538-bsl.py -p /dev/tty.usbserial-2212420 -evw blink.bin
-```
-
-**Don't forget to change `/dev/tty.usbserial-2212420` to the port used on your machine!**
-
-This shouldn't take long and if successful, you will see blinkenlights!
-
-If you want to re-flash zzh with new firmware, put it in bootloader mode and follow the flashing instructions. **This will work as long as BSL is not disabled by the firmware you burn to these devices.**
-
-##### Erase flash
-
-To completely erase the device flash, run:
-
-```bash
-$ ./cc2538-bsl.py -p /dev/tty.usbserial-2212420 -e
-```
 
 ### Flashing using external debugger
 
-**Please Note**: For general purpose usage, you will not need an external debugger and BSL method discussed above will be enough for your flashing needs. If you are a firmware developer needing proper debugging facilities and/or want to get access to the RF tools in TI SmartRF Studio, follow along.
+Instructions on how to use CC-DEVPACK-DEBUG and other external debuggers are available [here](/radio-docs/advanced/flash-jtag/).
 
-Due to space constraints, the debug header on zzh is (sadly) non-standard. 
-
-#### Pinout for the zzh debug header
-
-![zzh debug header pinout](/_assets/zzh-debug-pinout.png)
-
-#### zzh Debug Adapter
-
-To convert the zzh 5-pin debug header to a standard 10-pin Cortex Debug Connector, a small adapter PCB is needed (unless you hack and solder an IDC cable to the board directly). Design files for this adapter can be found [in the repo](https://github.com/electrolama/zig-a-zig-ah/tree/master/Debug-Adapter).
-
-With this adapter board plugged in to zzh, you can connect any debugger you wish to get access to the cJTAG port. This little adapter board kit (some soldering required) is available as an optional add-on to zzh on [Electrolama Tindie Store](https://www.tindie.com/stores/electrolama/).
-
-The cheapest option for an officially supported debugger is the [CC-DEVPACK-DEBUG](http://www.ti.com/tool/CC-DEVPACK-DEBUG), available from most common electronics distributors.
-
-![The Debug Sandwich](/_assets/zzh-debugger-devpack.jpg)
-
-(The Debug Sandwich: CC-DEVPACK-DEBUG on top of the zzh-debug-adapter on top of zzh.)
-
-Here'a handy pinout reference for CC-DEVPACK-DEBUG:
-
-![CC-DEVPACK-DEBUG Pinout](/_assets/cc-devpack-debug-pinout.png)
-
-(zzh-p will not require this adapter as there is enough space on the board for the standard cJTAG header)
 
 ### Zigbee2mqtt
 
-Zigbee2mqtt has support for CC2652R chip used on this board. Download the Z-Stack coordinator firmware from [@Koenkk's firmware repository](https://github.com/Koenkk/Z-Stack-firmware). The firmware you'll need can be found under `coordinator/Z-Stack_3.x.0/bin/CC26X2R1_<date>.zip`, as of writing the latest version available is `CC26X2R1_20200805.zip`. Download and extract this and follow the ["Flashing using BSL"](#flashing-using-bsl) instructions to burn this on your zzh.
+(Moved [here](/radio-docs/zigbee2mqtt/))
 
-#### Configuration
-
-Make sure that the CH340 USB-serial bridge drivers are installed and your device is recognised ([instructions here](#drivers-for-ch340)).
-
-With the correct serial port in use identified, edit your Zigbee2mqtt `configuration.yaml`:
-
-```yaml
-serial:
-  port: /dev/ttyUSB0  (change this if it is different on your machine)
-advanced:
-  rtscts: false
-```
-
-The `rtscts: false` directive does not appear in the default configuration file but is crucial for the operation of zzh so please **don't ignore that**. 
-Also note that it sits in the `advanced:` config group and not in `serial:`.
-
-#### Troubleshooting
-
-**"Error: Failed to connect to the adapter (Error: SRSP - SYS - ping after 6000ms)"**
-
-This is a general error if there are communication problems with the adapter used.
-
-A checklist to go through if you get this error message:
-
-  * Try re-plugging in zzh once or twice.
-  * Make sure you have the correct serial port and `rtscts: false` option set in your `configuration.yaml`
-  * Make sure you have the correct firmware burned on your adapter. **Remember, zzh boards ship blank** so you will need to burn the appropriate firmware before using it with any application.
-  * Are you using any virtualisation/container pass-through for the USB device? There have been reports of these potentially causing problems so for debugging purposes try communicating with the adapter directly from the host OS it is connected to (i.e: see if it works without the bypass)
-  * Make sure you are using an up-to-date version of Zigbee2mqtt on the host and firmware on the adapter.
-
-** "Error: Coordinator failed to start, probably the panID is already in use, try a different panID or channel" **
-
-This error can appear when migrating an existing installation of zigbee2mqtt to use zzh. Changing the Zigbee channel used or Personal Area Network Identifier (PAN ID) should be sfficient to prevent conflicts with previous configurations. This can be accomplished by editing [`configuration.yaml`](https://www.zigbee2mqtt.io/information/configuration.html), specifying a custom `channel` or `pan_id` under the `advanced` section. Valid channels are in the range 11 to 26, however channels in the Zigbee Light Link (ZLL) range are recommended; channel 11 (default), 15, 20, or 25. PAN ID can by any 16-bit value (default: `0x1a62`). Note that these changes will require re-pairing of existing devices.
 
 ### Zigbee Home Automation (ZHA) integration in Home Assistant
 
-[Zigbee Home Automation (ZHA)](https://www.home-assistant.io/integrations/zha/) integration is a built-in component in Home Assistant for native support, this makes the initial configuration very simple as you connect to the zzh adapter directly from Home Assistant's UI.
-
-Note! **Support for Texas Instruments chips (especially CC2562) in Home Assistant's ZHA is still experimental as in early development!**
-
-ZHA depends on the [zigpy python library (plus radio libraries for zigpy)](https://github.com/zigpy/) to support different Zigbee adapters/modules, and the radio library for TI CI chips supports the [same Z-Stack coordinator firmware as Zigbee2mqtt](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator).
-
-#### Configuration
-
-Make sure zzh is recognised and available to your Home Assistant's ZHA instance. Navigate to _Configuration -> Integrations_, click on the `+` icon, find _Zigbee Home Automation_ and click on it.
-
-![ZHA Integration](/_assets/zzh-zha-install.png)
-
-Choose the device path of zzh and wait for installation to complete. Navigate to the ZHA integration at the bottom of the Configuration page. You will now have "Texas Instruments ZNP Coordinator" as the first device in ZHA. 
-
-![ZHA Coordinator](/_assets/zzh-zha-coord.png)
-
-In case the autodetection fails, a manual setup menu will be displayed. Check the device path and set _Radio Type_ as **ti_cc**. Leave other options as they are.
-
-If ZHA is unable to connect to the zzh adapter then try re-plugging in the zzh USB adapter or try moving it to another USB-port.
+(Moved [here](/radio-docs/zha-home-assistant/))
 
 ## Aside: TI Part Numbers
 
-TI has quite a few different chips and they are all used/mentioned in open-source Zigbee world which can be daunting if you are just starting out. Here's a quick summary of part numbers and key features.
-
-The older generation:
-
-  - [CC2530](https://www.ti.com/product/CC2530): 2.4GHz Zigbee and IEEE 802.15.4 wireless MCU. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
-  - [CC2531](https://www.ti.com/product/CC2531): CC2530 with built-in USB. Used in the cheap "Zigbee sticks" sold everywhere. Intel 8051 core, 256 Flash, only has 8kB RAM. Needs expensive compiler license for official TI stack to built your own firmware.
-
-The "middle" generation:
-
-- [CC2538](https://www.ti.com/product/CC2538): 2.4GHz Zigbee, 6LoWPAN, and IEEE 802.15.4 wireless MCU. ARM Cortex-M3 core with with 512kB Flash and 32kB RAM.
-
-The newer generation:
-
-  - [CC2652R](https://www.ti.com/product/CC2652R): 2.4GHz only multi-protocol (Zigbee, Bluetooth, Thread, ...) wireless MCU. Cortex-M0 core for radio stack and Cortex-M4F core for application use, plenty of RAM. Free compiler option from TI. **zzh uses this chip**.
-  - [CC2652RB](https://www.ti.com/product/CC2652RB): Pin compatible "Crystal-less" CC2652R (so you could use it if you were to build your own zzh and omit the crystal) but **not firmware compatible**.
-  - [CC2652P](https://www.ti.com/product/CC2652P): CC2652R with a built-in RF PA. Not pin or firmware compatible with CC2652R/CC2652RB. **zzh-p will use this**.
-
-  Multi frequency chips:
-
-  - [CC1352R](https://www.ti.com/product/CC1352R): Sub 1 GHz & 2.4 GHz wireless MCU. Essentially CC2652R with an extra sub-1GHz radio.
-  - [CC1352P](https://www.ti.com/product/CC1352P): CC1352R with a built in RF PA.
-
-Auxiliary chips:
-
-  - [CC2590](https://www.ti.com/product/CC2590), [CC2591](https://www.ti.com/product/CC2591), and [CC2592](https://www.ti.com/product/CC2592): 2.4 GHz range extenders. **These are not wireless MCUs, just auxillary RF [PA (Power Amplifier)](https://en.wikipedia.org/wiki/RF_power_amplifier) and [LNA (Low Noise Amplifier)](https://en.wikipedia.org/wiki/Low-noise_amplifier) in the same package.**.
+(Moved [here](/radio-docs/advanced/ti-part-numbers/))
 
 ## Downloads
 
