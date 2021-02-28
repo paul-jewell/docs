@@ -22,6 +22,6 @@ zoe2 is the newer version of [zoe](/projects/zoe), a multi-protocol/frequency de
 
 ![zoe2, Revision C1](/_assets/zoe2-pi.jpg)
 
-Final prototypes are with testers at the moment and 
+Final prototypes are with testers at the moment.
 
 <p class="info">ℹ️ zoe2 will be released soon! <a href="/list">Click here</a> to join the Electrolama mailing list to get updates.</p>
