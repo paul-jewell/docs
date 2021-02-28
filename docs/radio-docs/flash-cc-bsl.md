@@ -33,6 +33,25 @@ Download and extract cc2538-bsl: `wget -O cc2538-bsl.zip https://codeload.github
 
 Install required dependencies: `$ /usr/bin/python3 -m pip install --user pyserial intelhex` (As we cannot write to the system's location we need to install the dependencies with in the user location. The downside is this has to be installed for every user that will use cc2538-bsl.)
 
+### FreeBSD
+To run cc2538-bsl.py you need to install some extra python dependencies.
+
+Install python3 and the required dependancies:
+```bash
+root@freebsd:~ # pkg install python37 py37-pip py37-pyserial py37-setuptools
+root@freebsd:~ # pip-3.7 install intelhex
+```
+
+Download and extract cc2538-bsl:
+```bash
+root@freebsd:~ # fetch -o cc2538-bsl.zip https://codeload.github.com/JelmerT/cc2538-bsl/zip/master ; unzip cc2538-bsl.zip cc2538-bsl-master/cc2538-bsl.py
+root@freebsd:~ # mv cc2538-bsl-master/cc2538-bsl.py /usr/local/bin/
+root@freebsd:~ # rmdir cc2538-bsl-master/
+```
+
+You can now run `cc2538-bsl.py` from anywhere.
+
+Wghen using cc2538-bsl.py you might need to add the `--bootloader-active-high` argument, this was needed on FreeBSD when testing prototype zzhp-lite adaptors.
 
 ## Put your stick in BSL mode
 
