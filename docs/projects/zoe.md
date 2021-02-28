@@ -1,5 +1,10 @@
 title: zoe (Zigbee, RTC and PoE for RPi)
 
+# Retired
+
+<p class="info">ℹ️ zoe is retired, zoe2 (<a href="/projects/zoe2">documentation</a>) has a much better radio and a few other improvements in the same form factor.</p>
+
+
 # Overview
 
 ![zoe, Revision C](/_assets/zoe-RevC.jpg)

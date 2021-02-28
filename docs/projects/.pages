@@ -1,4 +1,5 @@
 nav:
    - zzh (CC2652R Stick): zig-a-zig-ah.md
    - zoe (CC2530 w/ PoE + RTC for RPi): zoe.md
+   - zoe2 (CC1352P w/ PoE + RTC for RPi): zoe2.md
    - Hacks and Frivolities: /hacks
