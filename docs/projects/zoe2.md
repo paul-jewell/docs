@@ -4,9 +4,9 @@ title: zoe2 (Zigbee, RTC and PoE for RPi)
 
 ## Overview
 
-zoe2 is the newer version of [zoe](/projects/zoe), a multi-protocol/frequency development board designed to be used alongside a Raspberry Pi. It follows the [Raspberry Pi HAT Mechanical specification](https://github.com/raspberrypi/hats) but it does not have the ID EEPROM therefore it is not technically a HAT.
+zoe2 is a multi-protocol/frequency development board designed to be used alongside a Raspberry Pi. It follows the [Raspberry Pi HAT Mechanical specification](https://github.com/raspberrypi/hats) but it does not have the ID EEPROM therefore it is not technically a HAT.
 
-It builds on top of [zoe](/projects/zoe2/), with an upgraded radio that supports both 2.4GHz and 433MHz operation (with a potential 800MHz option as well). While there isn’t much in terms of software support for sub-GHz operation yet, this is an area of interest as it will (potentially) allow you to have a single board solution for multi-frequency operation, all deployed with a single PoE powered ethernet cable!
+It builds on top of [zoe](/projects/zoe2/), with a newer and significantly more capable radio for both 2.4GHz and 433MHz operation (with a potential 800MHz option as well). 2.4GHz operation is supported by [Koenkk's Z-Stack-firmware repository](https://github.com/Koenkk/Z-Stack-firmware) for use with the Open Source Home Automation software. While there isn’t much in terms of software support for sub-GHz operation yet, this is an area of interest as it will (potentially) allow you to have a single board solution for multi-frequency operation, all deployed with a single PoE powered ethernet cable!
 
 ## Features
 
