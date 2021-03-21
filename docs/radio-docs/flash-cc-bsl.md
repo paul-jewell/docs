@@ -11,7 +11,7 @@ title: Flash Firmware using cc2538-bsl
 
 To run cc2538-bsl.py you need to have python and pip installed on your system. If you don't have them installed, refer to your distribution package manager to get it set up. (On Debian/Ubuntu, `sudo apt update && sudo apt-get install python3-pip` should work. `sudo pip ...` is not the optimal way of installing packages but Python package management is out of scope for this document.)
 
-Download and extract cc2538-bsl: `wget -O cc2538-bsl.zip https://codeload.github.com/JelmerT/cc2538-bsl/zip/master && unzip cc2538-bsl.zip`
+Download and extract cc2538-bsl: `wget -O cc2538-bsl.zip https://github.com/JelmerT/cc2538-bsl/archive/refs/heads/master.zip && unzip cc2538-bsl.zip`
 
 Install required dependencies: `sudo pip3 install pyserial intelhex`
 
